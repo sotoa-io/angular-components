@@ -1,0 +1,19 @@
+.verticalAlign {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalAlign {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.form-field-radiobutton-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field-radiobutton {
+  margin-bottom: 16px;
+}

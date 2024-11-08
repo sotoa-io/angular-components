@@ -1,0 +1,16 @@
+.form-field-select mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-field-select mat-form-field[hidden] {
+  display: none;
+}
+
+::ng-deep .form-field-select-panel .mdc-list-item__primary-text {
+  width: 100%;
+}
+
+.form-field-select-prefix, .form-field-select-suffix {
+  padding: 0 10px;
+}

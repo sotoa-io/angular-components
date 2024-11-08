@@ -1,0 +1,49 @@
+<div>
+  @if (field().multiple) {
+    <div class="file-title">{{ field().label }} ({{ fileList ? fileList.length : 0 }})</div>
+    <table>
+      @for (pj of fileList; track pj) {
+        <tr>
+          <td>{{ pj.name }}</td>
+          <td>
+            @if (!field().disabled) {
+              <button mat-icon-button
+                      (click)="deleteFile(pj)"
+                      title="Supprimer">
+                <mat-icon>delete</mat-icon>
+              </button>
+            }
+          </td>
+        </tr>
+      }
+      @if (!field().disabled && (!field().maxNbRow || !fileList || field().maxNbRow! > fileList.length)) {
+        <tr class="ligne-ajout">
+          <td>
+            <input
+              #fileInput
+              class="fr-upload"
+              type="file"
+              id="file-upload"
+              name="file-upload"
+              (change)="onSelectFile($event)"
+              [accept]="field().accept ? field().accept : '*/*'"
+            />
+          </td>
+          <td>
+            <button mat-raised-button color="primary" type="button" (click)="addFile()">Joindre</button>
+          </td>
+        </tr>
+      }
+    </table>
+  } @else {
+    <div class="file-title">{{ field().label }}</div>
+    <input
+      class="fr-upload"
+      type="file"
+      [attr.id]="'file-upload' + field().name"
+      name="file-upload"
+      (change)="onSelectFile($event)"
+      [accept]="field().accept ? field().accept : '*/*'"
+    />
+  }
+</div>

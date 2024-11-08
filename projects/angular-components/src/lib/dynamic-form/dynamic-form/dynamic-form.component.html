@@ -1,0 +1,50 @@
+@if (form) {
+  <form class="dynamic-form"
+        [formGroup]="form"
+        (submit)="handleSubmit($event)"
+        [ngClass]="config().className">
+    @if (fields) {
+      <div class="dynamic-form-content"
+           [ngClass]="config().contentClassName">
+        @for (field of fields; track field.type + field.name) {
+          <div [hidden]="!!field.hidden"
+               [ngClass]="field.hostClassName">
+            <ng-container
+              acDynamicField
+              [path]="field.name"
+              [type]="field.type"
+              [field]="field"
+              [group]="form"
+            >
+            </ng-container>
+          </div>
+        }
+      </div>
+    }
+
+    @if (config().validations && form && !form.untouched && form.invalid) {
+      <mat-error class="error-form">
+        @for (validation of config().validations; track validation) {
+          @if (form.hasError(validation.name)) {
+            {{ validation.message }}
+          }
+        }
+      </mat-error>
+    }
+    @if (config().buttons) {
+      <div class="dynamic-form-buttons" [ngClass]="config().buttons!.groupClassName">
+        @for (button of config().buttons!.list; track $index) {
+          <ac-button [type]="button.type"
+                     [className]="button.className"
+                     [matType]="'raised'"
+                     [disabled]="button.disabledIfFormNoValid && form.invalid"
+                     [matIcon]="button.matIcon"
+                     [label]="button.label"
+                     [title]="button.title"
+                     (buttonClick)="onClickButton(button)"
+          ></ac-button>
+        }
+      </div>
+    }
+  </form>
+}

@@ -1,0 +1,91 @@
+@if (field.accordion) {
+  <fieldset class="ac-form-field ac-form-field-array" [ngClass]="field.className" [hidden]="field.hidden">
+    <mat-accordion class="ac-form-field-array-accordion" multi>
+      <mat-expansion-panel [expanded]="field.opened">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <legend class="ac-form-field-array-label">{{ field.label }}</legend>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        @if (field.description) {
+          <p [innerHTML]="field.description"></p>
+        }
+        <div *ngTemplateOutlet="groupFields"></div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </fieldset>
+} @else {
+  <fieldset class="ac-form-field ac-form-field-array" [ngClass]="field.className" [hidden]="field.hidden">
+    <legend class="ac-form-field-array-label">{{ field.label }}</legend>
+    @if (field.description) {
+      <p [innerHTML]="field.description"></p>
+    }
+    <div class="ac-form-field-array-content">
+      <div *ngTemplateOutlet="groupFields"></div>
+    </div>
+  </fieldset>
+}
+
+<ng-template #groupFields>
+  <div class="ac-form-field-array" [formGroup]="group">
+    <div [formArrayName]="field.name">
+      @for (inst of field.instances; track inst; let i = $index) {
+        <fieldset class="ac-form-field-array-element"
+                  [ngClass]="field.elementClassName">
+          <legend class="ac-form-field-array-element-label">
+            {{ field.itemLabel ?? 'Item' }} {{ inst.number + 1 }}
+          </legend>
+          <div class="ac-form-field-array-element-content"
+               [ngClass]="field.elementContentClassName">
+            @for (f of inst.fields; track f.name + f.type) {
+              <div [hidden]="!!f.hidden" [ngClass]="f.hostClassName">
+                <ng-container acDynamicField
+                              [type]="f.type"
+                              [path]="path + '.' + f.name"
+                              [field]="f"
+                              [group]="inst.group"
+                              [instancePath]="path + '[' + inst.number + ']'"
+                ></ng-container>
+              </div>
+            }
+          </div>
+          <div class="ac-form-field-array-element-action">
+            @if (!field.disabled && (!field.minNbRow || field.minNbRow < array.controls.length)) {
+              <button type="button" mat-raised-button (click)="deleteItem(i, inst)">
+                @if (field.deleteButton && field.deleteButton.matIcon) {
+                  <mat-icon [title]="field.deleteButton!.title ? field.deleteButton!.title : ''">
+                    {{ field.deleteButton!.matIcon }}
+                  </mat-icon>
+                }
+                {{ field.deleteButton ? field.deleteButton.label : 'Supprimer' }}
+              </button>
+            }
+          </div>
+        </fieldset>
+      }
+      @if (!field.disabled && (!field.maxNbRow || field.maxNbRow > array.controls.length)) {
+        <div class="ac-form-field-array-add-button">
+          <button mat-raised-button
+                  color="primary"
+                  type="button"
+                  (click)="addItem()"
+          >
+            @if (field.addButton && field.addButton.matIcon) {
+              <mat-icon [title]="field.addButton!.title ? field.addButton!.title : ''">
+                {{ field.addButton!.matIcon }}
+              </mat-icon>
+            }
+            {{ field.addButton ? field.addButton.label : 'Ajouter' }}
+          </button>
+        </div>
+      }
+      <mat-error>
+        @for (validation of field.validations; track validation) {
+          @if (array && !array.untouched && array.hasError(validation.name)) {
+            {{ validation.message }}
+          }
+        }
+      </mat-error>
+    </div>
+  </div>
+</ng-template>

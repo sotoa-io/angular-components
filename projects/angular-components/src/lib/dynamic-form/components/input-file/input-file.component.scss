@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    text-align: left;
+  }
+
+  td {
+    border-bottom: 1px solid grey;
+    padding: 10px 0;
+  }
+
+  .ligne-ajout td {
+    border: none;
+  }
+}
+
+.file-title {
+  font-weight: bold;
+}

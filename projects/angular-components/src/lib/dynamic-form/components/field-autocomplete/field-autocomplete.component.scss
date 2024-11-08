@@ -1,0 +1,12 @@
+.form-field-autocomplete mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-field-autocomplete mat-form-field[hidden] {
+  display: none;
+}
+
+.form-field-autocomplete-prefix, .form-field-autocomplete-suffix {
+  padding: 0 10px;
+}

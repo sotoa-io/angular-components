@@ -1,0 +1,44 @@
+<h2 class="modal-title" matDialogTitle> {{ data.title }}</h2>
+
+<div matDialogContent>
+  @if (data.description) {
+    <p [innerHTML]="data.description"></p>
+  }
+  @if (form) {
+    @for (field of data.fields; track field) {
+      <div
+        [hidden]="!!field.hidden"
+        [ngClass]="field.hostClassName">
+        <ng-container
+          acDynamicField
+          [path]="field.name"
+          [type]="field.type"
+          [field]="field"
+          [group]="form"
+        >
+        </ng-container>
+      </div>
+    }
+  }
+  @if (message) {
+    <div [innerHTML]="message"
+         [ngClass]="{'message-success': status === 'OK', 'message-error': status === 'ERROR'}"
+    ></div>
+  }
+</div>
+
+<div matDialogActions>
+  <div class="modal-action-buttons" [ngClass]="data.buttons.groupClassName">
+    @for (button of data.buttons.list; track $index) {
+      <ac-button [type]="button.type"
+                 [className]="button.className"
+                 [matType]="'raised'"
+                 [disabled]="button.disabledIfFormNoValid && form?.invalid"
+                 [matIcon]="button.matIcon"
+                 [label]="button.label"
+                 [title]="button.title"
+                 (buttonClick)="onClickButton(button)"
+      ></ac-button>
+    }
+  </div>
+</div>

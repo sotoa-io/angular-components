@@ -1,0 +1,35 @@
+<header>
+  <mat-toolbar>
+    <span class="title">Examples</span>
+    <nav>
+      <button mat-button [matMenuTriggerFor]="menu">Dynamic Form</button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="/dynamic-form">Dynamic Form</a>
+        <a mat-menu-item routerLink="/dynamic-form-modal">Dynamic Form Modal</a>
+        <a mat-menu-item routerLink="/dynamic-form-stepper">Dynamic Form Stepper</a>
+        <a mat-menu-item routerLink="/input">Champ input</a>
+        <a mat-menu-item routerLink="/select">Champ select</a>
+        <a mat-menu-item routerLink="/date">Champ date</a>
+        <a mat-menu-item routerLink="/textarea">Champ textarea</a>
+        <a mat-menu-item routerLink="/autocomplete">Champ autocomplete</a>
+        <a mat-menu-item routerLink="/checkbox">Champ checkbox</a>
+        <a mat-menu-item routerLink="/radio">Champ radio</a>
+        <a mat-menu-item routerLink="/toggle">Champ toggle</a>
+        <a mat-menu-item routerLink="/file">Champ file</a>
+        <a mat-menu-item routerLink="/custom">Champ custom</a>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="menuTable">Dynamic Table</button>
+      <mat-menu #menuTable="matMenu">
+        <a mat-menu-item routerLink="/dynamic-table">Dynamic table</a>
+        <a mat-menu-item routerLink="/dynamic-table-external-data">Dynamic table External Data</a>
+      </mat-menu>
+      <button mat-button [matMenuTriggerFor]="menuButtons">Dynamic Button</button>
+      <mat-menu #menuButtons="matMenu">
+        <a mat-menu-item routerLink="/buttons">Buttons</a>
+      </mat-menu>
+    </nav>
+  </mat-toolbar>
+</header>
+<main>
+  <router-outlet />
+</main>

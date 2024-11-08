@@ -1,0 +1,337 @@
+@switch (buttonMatType()) {
+  @case ('button-raised') {
+    <button mat-raised-button
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [color]="color()"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-raised') {
+    <a type="link" mat-raised-button
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [color]="color()"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-stroked') {
+    <button mat-stroked-button
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [color]="color()"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-stroked') {
+    <a type="link" mat-stroked-button
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [color]="color()"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-flat') {
+    <button mat-flat-button
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [color]="color()"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-flat') {
+    <a type="link" mat-flat-button
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [color]="color()"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-icon') {
+    <button mat-icon-button
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [color]="color()"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-icon') {
+    <a type="link" mat-icon-button
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [color]="color()"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-fab') {
+    <button mat-fab
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [color]="color()"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-fab') {
+    <a type="link" mat-fab
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [color]="color()"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-mini-fab') {
+    <button mat-mini-fab
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [color]="color()"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-mini-fab') {
+    <a type="link" mat-mini-fab
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [color]="color()"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-menu') {
+    <button mat-menu-item
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-menu') {
+    <a type="link" mat-menu-item
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+  @case ('button-basic') {
+    <button mat-button
+            [type]="type()"
+            [ngClass]="className()"
+            [title]="title() ?? ''"
+            [attr.aria-label]="ariaLabel()"
+            [disabled]="disabled()"
+            [disableRipple]="disableRipple()"
+            [matBadge]="badge()"
+            [matBadgePosition]="badgeOptions()?.position || 'after'"
+            [matBadgeColor]="badgeOptions()?.color"
+            [matBadgeDescription]="badgeOptions()?.description ?? ''"
+            [matBadgeDisabled]="badgeOptions()?.disabled"
+            [matBadgeHidden]="badgeOptions()?.hidden"
+            [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+            [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+            (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </button>
+  }
+  @case ('link-basic') {
+    <a type="link" mat-button
+       [ngClass]="className()"
+       [title]="title() ?? ''"
+       [attr.aria-label]="ariaLabel()"
+       [disabled]="disabled()"
+       [disableRipple]="disableRipple()"
+       [matBadge]="badge()"
+       [matBadgePosition]="badgeOptions()?.position || 'after'"
+       [matBadgeColor]="badgeOptions()?.color"
+       [matBadgeDescription]="badgeOptions()?.description ?? ''"
+       [matBadgeDisabled]="badgeOptions()?.disabled"
+       [matBadgeHidden]="badgeOptions()?.hidden"
+       [matBadgeOverlap]="!(badgeOptions()?.noOverlap)"
+       [matBadgeSize]="badgeOptions()?.size ?? 'medium'"
+       (click)="clickButton($event)">
+      <span *ngTemplateOutlet="buttonContent"></span>
+    </a>
+  }
+}
+
+<ng-template #buttonContent>
+  @if (matIcon()) {
+    <mat-icon
+      aria-hidden="false"
+      [fontIcon]="matIcon()!"
+    ></mat-icon>
+  }
+  <span [innerHTML]="label()"></span>
+</ng-template>
+

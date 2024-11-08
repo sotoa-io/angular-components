@@ -1,0 +1,12 @@
+.form-field-date mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-field-date mat-form-field[hidden] {
+  display: none;
+}
+
+.form-field-date-prefix, .form-field-date-suffix {
+  padding: 0 10px;
+}

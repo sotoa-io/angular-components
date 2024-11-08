@@ -1,0 +1,12 @@
+.form-field-input mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-field-input mat-form-field[hidden] {
+  display: none;
+}
+
+.form-field-input-prefix, .form-field-input-suffix {
+  padding: 0 10px;
+}

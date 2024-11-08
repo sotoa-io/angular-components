@@ -1,0 +1,15 @@
+.form-field-textarea {
+  margin-bottom: 20px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  mat-form-field[hidden] {
+    display: none;
+  }
+
+  .form-field-textarea-prefix, .form-field-textarea-suffix {
+    padding: 0 10px;
+  }
+}

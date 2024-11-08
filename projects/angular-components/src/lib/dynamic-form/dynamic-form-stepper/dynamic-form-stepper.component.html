@@ -1,0 +1,101 @@
+@if (form) {
+  <form [formGroup]="form"
+        class="dynamic-form-stepper"
+        [ngClass]="config().className"
+  >
+    <mat-stepper [linear]="config().linear"
+                 [orientation]="(stepperOrientation | async)!">
+      @for (step of config().steps; track step.name; let stepFirst = $first; let stepLast = $last) {
+        <mat-step [stepControl]="form.controls[step.name]"
+                  [formGroup]="getSubGroup(step.name)"
+                  [errorMessage]="step.errorMessage ?? ''">
+          <ng-template matStepLabel>{{ step.label }}</ng-template>
+          <ng-template matStepContent>
+            <div class="dynamic-form-stepper-content"
+                 [ngClass]="config().contentClassName">
+              @for (field of step.fields; track field.name) {
+                <div [hidden]="!!field.hidden" [ngClass]="field.hostClassName">
+                  <ng-container
+                    acDynamicField
+                    [path]="field.name"
+                    [type]="field.type"
+                    [field]="field"
+                    [group]="getSubGroup(step.name)"
+                  >
+                  </ng-container>
+                </div>
+              }
+            </div>
+            <div class="dynamic-form-stepper-buttons" [ngClass]="config().buttons.groupClassName">
+              @for (button of config().buttons.list; track $index) {
+                @if (button.type === 'previous' && !stepFirst) {
+                  <button mat-raised-button
+                          matStepperPrevious
+                          type="action"
+                          [ngClass]="button.className"
+                          [disabled]="button.disabledIfFormNoValid && getSubGroup(step.name).invalid"
+                          (click)="onClickButton(button)"
+                          [title]="button.title ? button.title : ''"
+                  >
+                    @if (button.matIcon) {
+                      <mat-icon>
+                        {{ button.matIcon }}
+                      </mat-icon>
+                    }
+                    {{ button.label }}
+                  </button>
+                } @else if (button.type === 'next' && !stepLast) {
+                  <button mat-raised-button
+                          matStepperNext
+                          type="action"
+                          [ngClass]="button.className"
+                          [disabled]="button.disabledIfFormNoValid && getSubGroup(step.name).invalid"
+                          (click)="onClickButton(button)"
+                          [title]="button.title ? button.title : ''"
+                  >
+                    @if (button.matIcon) {
+                      <mat-icon>
+                        {{ button.matIcon }}
+                      </mat-icon>
+                    }
+                    {{ button.label }}
+                  </button>
+                } @else if (button.type === 'submit' && stepLast) {
+                  <button mat-raised-button
+                          type="submit"
+                          [ngClass]="button.className"
+                          [disabled]="button.disabledIfFormNoValid && form.invalid"
+                          (click)="onClickButton(button)"
+                          [title]="button.title ? button.title : ''"
+                  >
+                    @if (button.matIcon) {
+                      <mat-icon>
+                        {{ button.matIcon }}
+                      </mat-icon>
+                    }
+                    {{ button.label }}
+                  </button>
+                } @else if (button.type === 'button') {
+                  <button mat-raised-button
+                          type="button"
+                          [ngClass]="button.className"
+                          [disabled]="button.disabledIfFormNoValid && getSubGroup(step.name).invalid"
+                          (click)="onClickButton(button)"
+                          [title]="button.title ? button.title : ''"
+                  >
+                    @if (button.matIcon) {
+                      <mat-icon>
+                        {{ button.matIcon }}
+                      </mat-icon>
+                    }
+                    {{ button.label }}
+                  </button>
+                }
+              }
+            </div>
+          </ng-template>
+        </mat-step>
+      }
+    </mat-stepper>
+  </form>
+}

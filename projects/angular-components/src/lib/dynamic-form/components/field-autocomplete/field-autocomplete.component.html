@@ -1,0 +1,71 @@
+<div class="ac-form-field ac-form-field-autocomplete"
+     [ngClass]="field.className"
+     [formGroup]="group">
+  <mat-form-field [ngClass]="field.className" [formGroup]="group">
+    <mat-label><span [innerHTML]="field.label"></span></mat-label>
+    <input type="text"
+           matInput
+           [formControlName]="field.name"
+           [placeholder]="field.placeholder ? field.placeholder : ''"
+           [required]="!!required"
+           [matAutocomplete]="auto"
+           (blur)="onBlur()"
+    >
+    <mat-autocomplete
+      autoActiveFirstOption="true"
+      #auto="matAutocomplete"
+      [displayWith]="displayWith.bind(this)"
+    >
+      @for (option of (filteredOptions | async); track option) {
+        <mat-option [value]="field.valueKey ? option[field.valueKey] : option">
+          {{ displayWith(option) }}
+        </mat-option>
+      }
+    </mat-autocomplete>
+    @if (!field.disabled) {
+      <button mat-icon-button matSuffix type="button" (click)="reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+    @for (b of field.prefixes; track b) {
+      <span class="ac-form-field-autocomplete-prefix" matPrefix>
+        @if (b.action) {
+          <ac-button type="button"
+                     [matType]="b.matButtonType"
+                     [label]="b.label"
+                     [ariaLabel]="b.actionAriaLabel"
+                     (buttonClick)="buttonAction(b)"
+          ></ac-button>
+        } @else {
+          <span [innerHTML]="b.label"></span>
+        }
+      </span>
+    }
+    @for (b of field.suffixes; track b) {
+      <span class="ac-form-field-autocomplete-suffix" matSuffix>
+        @if (b.action) {
+          <ac-button type="button"
+                     [matType]="b.matButtonType"
+                     [label]="b.label"
+                     [ariaLabel]="b.actionAriaLabel"
+                     (buttonClick)="buttonAction(b)"
+          ></ac-button>
+        } @else {
+          <span [innerHTML]="b.label"></span>
+        }
+      </span>
+    }
+
+    @if (field.startHint) {
+      <mat-hint align="start"> {{ field.startHint }}</mat-hint>
+    }
+    @if (field.endHint) {
+      <mat-hint align="end"> {{ field.endHint }}</mat-hint>
+    }
+    @for (validation of field.validations; track validation) {
+      @if (control && !control.untouched && control.hasError(validation.name)) {
+        <mat-error>{{ validation.message }}</mat-error>
+      }
+    }
+  </mat-form-field>
+</div>

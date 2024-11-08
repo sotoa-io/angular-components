@@ -1,0 +1,31 @@
+@if (column.component) {
+  <ng-container acCustomCell [row]="row" [column]="column"></ng-container>
+} @else {
+  @if (column.pipe && column.pipe.token) {
+    <span class="cell-label">{{ value | dynamicPipe: column.pipe.token: column.pipe.args }}</span>
+  } @else {
+    <span class="cell-label">{{ value }}</span>
+  }
+
+
+  @if (column.buttons) {
+    <ul class="cell-buttons-group" [ngClass]="column.buttonsGroupClassName">
+      @for (btn of column.buttons; track $index) {
+        @if (!btn.visible || btn.visible(row, column)) {
+          <li>
+            <ac-button
+              [label]="btn.label ?? (btn.getLabel ? btn.getLabel(row, column) : undefined)"
+              [matType]="btn.matType"
+              [matIcon]="btn.matIcon"
+              [color]="btn.color"
+              [link]="btn.link"
+              [title]="btn.title"
+              [ariaLabel]="btn.ariaLabel"
+              [disabled]="btn.disabled ? btn.disabled(row, column) : false"
+              (buttonClick)="btn.action(row, column)"></ac-button>
+          </li>
+        }
+      }
+    </ul>
+  }
+}

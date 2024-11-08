@@ -1,0 +1,12 @@
+section {
+  .example-label {
+    margin-bottom: 10px;
+  }
+  padding: 20px 0;
+}
+
+.example-button-row {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+}

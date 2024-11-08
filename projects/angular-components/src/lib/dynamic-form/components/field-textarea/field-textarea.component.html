@@ -1,0 +1,57 @@
+<div
+  class="ac-form-field ac-form-field-textarea"
+  [ngClass]="field.className"
+  [formGroup]="group"
+>
+  <mat-form-field>
+    <mat-label>
+      {{ field.label }}
+    </mat-label>
+    <textarea matInput
+              [placeholder]="field.placeholder ?? ''"
+              [formControlName]="field.name"
+              [readonly]="field.readonly"
+              [required]="!!required"
+    ></textarea>
+
+    @for (b of field.prefixes; track b) {
+      <span class="ac-form-field-textarea-prefix" matPrefix>
+        @if (b.action) {
+          <ac-button type="button"
+                     [matType]="b.matButtonType"
+                     [label]="b.label"
+                     [ariaLabel]="b.actionAriaLabel"
+                     (buttonClick)="buttonAction(b)"
+          ></ac-button>
+        } @else {
+          <span [innerHTML]="b.label"></span>
+        }
+      </span>
+    }
+    @for (b of field.suffixes; track b) {
+      <span class="ac-form-field-textarea-suffix" matSuffix>
+        @if (b.action) {
+          <ac-button type="button"
+                     [matType]="b.matButtonType"
+                     [label]="b.label"
+                     [ariaLabel]="b.actionAriaLabel"
+                     (buttonClick)="buttonAction(b)"
+          ></ac-button>
+        } @else {
+          <span [innerHTML]="b.label"></span>
+        }
+      </span>
+    }
+    @if (field.startHint) {
+      <mat-hint align="start"> {{ field.startHint }}</mat-hint>
+    }
+    @if (field.endHint) {
+      <mat-hint align="end"> {{ field.endHint }}</mat-hint>
+    }
+    @for (validation of field.validations; track validation) {
+      @if (control && !control.untouched && control.hasError(validation.name)) {
+        <mat-error>{{ validation.message }}</mat-error>
+      }
+    }
+  </mat-form-field>
+</div>

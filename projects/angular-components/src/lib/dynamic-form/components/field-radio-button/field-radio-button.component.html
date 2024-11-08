@@ -1,0 +1,33 @@
+<div
+  class="ac-form-field ac-form-field-radiobutton"
+  [ngClass]="field.className"
+  [formGroup]="group"
+>
+  <label [attr.id]="'radiobutton-'+field.name" class="ac-form-field-radiobutton-label">
+    {{ field.label }} {{ !!required ? '*' : '' }}
+    @if (field.description) {
+      <span class="radiobutton-description">{{ field.description }}</span>
+    }
+  </label>
+  <mat-radio-group class="ac-form-field-radiobutton-content"
+                   [attr.aria-labelledby]="'radiobutton-'+field.name"
+                   [formControlName]="field.name"
+                   [color]="field.color ?? 'primary'"
+                   [ngClass]="{'verticalAlign': field.verticalAlign, 'horizontalAlign': !field.verticalAlign}"
+  >
+    @if (field.options) {
+      @for (item of field.options; track item) {
+        <mat-radio-button
+          [value]="field.valueKey ? item[field.valueKey] : item"
+          [disabled]="field.disabledKey ? item[field.disabledKey] : false">
+          {{ field.labelKey ? item[field.labelKey] : item }}
+        </mat-radio-button>
+      }
+    }
+  </mat-radio-group>
+  @for (validation of field.validations; track validation) {
+    @if (control && !control.untouched && control.hasError(validation.name)) {
+      <mat-error>{{ validation.message }}</mat-error>
+    }
+  }
+</div>

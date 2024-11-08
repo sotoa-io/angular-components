@@ -1,0 +1,29 @@
+{
+  "name": "@sotoa/angular-components",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": ">=18.2.0",
+    "@angular/core": ">=18.2.0",
+    "@angular/material": ">=18.2.0",
+    "@angular/material-moment-adapter": ">=18.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "author": "Sandrine Famose",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sotoa-io/angular-components.git"
+  },
+  "keywords": [
+    "angular",
+    "javascript",
+    "dynamic-form"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sotoa-io/angular-components/issues"
+  },
+  "homepage": "https://github.com/sotoa-io/angular-components#readme"
+}

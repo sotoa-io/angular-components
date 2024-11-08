@@ -1,0 +1,19 @@
+<div class="ac-form-field ac-form-field-row"
+     [ngClass]="field.className"
+     [hidden]="field.hidden">
+  @for (f of field.fields; track f.type + f.name) {
+    <div
+      [hidden]="!!f.hidden"
+      [ngClass]="f.hostClassName">
+      <ng-container
+        acDynamicField
+        [path]="path + '.' + f.name"
+        [type]="f.type"
+        [field]="f"
+        [group]="group"
+        [instancePath]="instancePath"
+      >
+      </ng-container>
+    </div>
+  }
+</div>

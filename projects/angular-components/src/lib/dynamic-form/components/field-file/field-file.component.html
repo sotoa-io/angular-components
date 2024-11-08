@@ -1,0 +1,11 @@
+<div
+  class="ac-form-field ac-form-field-file"
+  [ngClass]="field.className"
+  [formGroup]="group">
+  <ac-input-file [formControlName]="field.name" [field]="field" [group]="group"></ac-input-file>
+  @for (validation of field.validations; track validation) {
+    @if (control && !control.untouched && control.hasError(validation.name)) {
+      <mat-error>{{ validation.message }}</mat-error>
+    }
+  }
+</div>

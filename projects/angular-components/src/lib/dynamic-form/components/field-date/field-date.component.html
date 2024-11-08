@@ -1,0 +1,70 @@
+<div
+  class="ac-form-field ac-form-field-date"
+  [ngClass]="field.className"
+  [formGroup]="group"
+>
+  <mat-form-field>
+    <mat-label>
+      {{ field.label }}
+    </mat-label>
+    <input matInput
+           type="text"
+           [matDatepicker]="picker"
+           [formControlName]="field.name"
+           [required]="!!required"
+           [placeholder]="field.placeholder ? field.placeholder : ''"
+           [readonly]="field.readonly"
+           [min]="field.minDate ? field.minDate : null"
+           [max]="field.maxDate ? field.maxDate : null"
+           [matDatepickerFilter]="filterDate"
+           (click)="onInputClick(picker)"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker [touchUi]="!!field.touchUi"></mat-datepicker>
+
+    @for (b of field.prefixes; track b) {
+      <span class="ac-form-field-date-prefix" matPrefix>
+        @if (b.action) {
+          <ac-button type="button"
+                     [matType]="b.matButtonType"
+                     [label]="b.label"
+                     [ariaLabel]="b.actionAriaLabel"
+                     (buttonClick)="buttonAction(b)"
+          ></ac-button>
+        } @else {
+          <span [innerHTML]="b.label"></span>
+        }
+      </span>
+    }
+    @for (b of field.suffixes; track b) {
+      <span class="ac-form-field-date-suffix" matSuffix>
+        @if (b.action) {
+          <ac-button type="button"
+                     [matType]="b.matButtonType"
+                     [label]="b.label"
+                     [ariaLabel]="b.actionAriaLabel"
+                     (buttonClick)="buttonAction(b)"
+          ></ac-button>
+        } @else {
+          <span [innerHTML]="b.label"></span>
+        }
+      </span>
+    }
+
+    @if (field.startHint) {
+      <mat-hint align="start"> {{ field.startHint }}</mat-hint>
+    }
+    @if (field.endHint) {
+      <mat-hint align="end"> {{ field.endHint }}</mat-hint>
+    }
+    @if (control && !control.untouched && control.invalid) {
+      <mat-error>
+        @for (validation of field.validations; track validation) {
+          @if (control.hasError(validation.name)) {
+            {{ validation.message }}
+          }
+        }
+      </mat-error>
+    }
+  </mat-form-field>
+</div>

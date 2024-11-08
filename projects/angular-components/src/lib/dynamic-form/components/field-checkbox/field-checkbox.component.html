@@ -1,0 +1,21 @@
+<div class="ac-form-field ac-form-field-checkbox" [ngClass]="field.className">
+  <div [formGroup]="group">
+    <mat-checkbox [formControlName]="field.name"
+                  [attr.id]="'text-checkbox-' + field.name"
+                  color="primary"
+    >
+      {{ field.label }}
+      @if (required) {
+        <span class="red">*</span>
+      }
+    </mat-checkbox>
+
+    <div class="fr-messages-group" [attr.id]="'text-checkbox-' + field.name + '-error'" aria-live="assertive">
+      @for (validation of field.validations; track validation) {
+        @if (control && !control.untouched && control.hasError(validation.name)) {
+          <mat-error>{{ validation.message }}</mat-error>
+        }
+      }
+    </div>
+  </div>
+</div>

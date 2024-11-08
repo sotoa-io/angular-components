@@ -1,0 +1,11 @@
+<label>Level</label>
+@for (star of stars; track $index) {
+  <span (click)="rate($index+1)">
+    @if (star) {
+      <mat-icon>radio_button_checked</mat-icon>
+    } @else {
+      <mat-icon>radio_button_unchecked</mat-icon>
+    }
+  </span>
+}
+
