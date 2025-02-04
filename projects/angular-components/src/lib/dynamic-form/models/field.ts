@@ -1,7 +1,6 @@
-import { FormGroup } from "@angular/forms";
-import { AcTextConfig } from "./text-config";
-import { AcFieldConfig, PathFieldMap } from "./field-config";
-import {input, InputSignal} from "@angular/core";
+import {FormGroup} from "@angular/forms";
+import {AcTextConfig} from "./text-config";
+import {AcFieldConfig} from "./field-config";
 
 export interface AcField {
   path: string;

@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {AcCondition, AcExpression, AcExpressionOperatorEnum, AcLogicOperatorEnum} from "../models/condition";
-import {FormField, IdPathMap, PathFieldMap} from "../models/field-config";
-import {isArray} from "lodash";
 import {AcValidator} from "../models/validator";
+import {DynamicFormData} from "../models/field-config";
+import {AcCondition} from "../models/condition";
 
 @Injectable({
   providedIn: 'root'
@@ -12,31 +11,41 @@ export class ConditionsService {
   constructor() {
   }
 
+
   checkValidationConditions(
     validationConditions: { fieldId: string; validation: AcValidator }[],
-    pathFieldMap: PathFieldMap,
-    idPathMap: IdPathMap
+    dynamicFormDatas: DynamicFormData
   ) {
     for (const cond of validationConditions) {
-      const fieldPath = idPathMap.get(cond.fieldId);
-      if (isArray(fieldPath)) {
+      const fieldPath = dynamicFormDatas.idPathMap.get(cond.fieldId);
+      console.log(fieldPath);
+      if (fieldPath) {
         for (let instance of fieldPath) {
-          const field = pathFieldMap.get(instance.path);
+          const field = dynamicFormDatas.pathFieldConfigMap.get(instance);
+          console.log(field);
+          /*
           if (field) {
             const isConditionOk = this.checkCondition(cond.validation.condition!, pathFieldMap, idPathMap, instance.arrayCode, instance.arrayInstance);
             this.setValidation(field, cond.validation, isConditionOk);
           }
+
+           */
         }
-      } else if (fieldPath) {
+      }
+      /*
+      else if (fieldPath) {
         const field = pathFieldMap.get(fieldPath);
         if (field && field.control) {
           const isConditionOk = this.checkCondition(cond.validation.condition!, pathFieldMap, idPathMap, null, null);
           this.setValidation(field, cond.validation, isConditionOk);
         }
       }
+
+       */
     }
   }
 
+  /*
   setValidation(field: FormField, validation: AcValidator, isConditionOk: boolean) {
     if (isConditionOk) {
       field.control!.addValidators(validation.validator!);
@@ -45,14 +54,16 @@ export class ConditionsService {
     }
     field.control!.updateValueAndValidity({emitEvent: false});
   }
+  */
 
   checkDisplayConditions(
     displayConditions: { fieldId: string; condition: AcCondition }[],
-    pathFieldMap: PathFieldMap,
-    idPathMap: IdPathMap
+    dynamicFormDatas: DynamicFormData
   ) {
     for (const cond of displayConditions) {
-      const fieldPath = idPathMap.get(cond.fieldId);
+      const fieldPath = dynamicFormDatas.idPathMap.get(cond.fieldId);
+      console.log(fieldPath);
+      /*
       if (isArray(fieldPath)) {
         for (let instance of fieldPath) {
           const field = pathFieldMap.get(instance.path);
@@ -68,9 +79,12 @@ export class ConditionsService {
           this.setHidden(field, isConditionKo);
         }
       }
+
+       */
     }
   }
 
+  /*
   setHidden(field: FormField, isConditionKo: boolean) {
     if (isConditionKo != field.config.hidden) {
       field.config.hidden = isConditionKo;
@@ -130,4 +144,6 @@ export class ConditionsService {
     }
     return isOk;
   }
+
+   */
 }

@@ -19,7 +19,7 @@ import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.c
 export class AcFieldTextareaComponent extends AbstractControlFieldComponent<AcFieldTextareaConfig> {
   buttonAction(b: AcAffix) {
     if (b.action && this.field && this.group) {
-      b.action(this.field, this.group, this.dynamicFormService.pathFieldMap
+      b.action(this.field, this.group, this.dynamicFormService.data!
       );
     }
   }

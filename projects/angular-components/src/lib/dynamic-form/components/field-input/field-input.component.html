@@ -6,13 +6,14 @@
   <mat-form-field>
     <mat-label><span [innerHTML]="field.label"></span></mat-label>
     <input matInput
+           [id]="uuid"
            [formControlName]="field.name"
            [required]="!!required"
            [placeholder]="field.placeholder ?? ''"
            [autocomplete]="field.autocomplete"
            [type]="inputType"
            [readonly]="field.readonly"
-           [maxlength]="field.maxlength ?? -1"
+           [maxlength]="field.maxlength ?? 100000000"
     >
     @if (field.inputType === 'password') {
       <button type="button" mat-icon-button matSuffix (click)="tooglePassword()"

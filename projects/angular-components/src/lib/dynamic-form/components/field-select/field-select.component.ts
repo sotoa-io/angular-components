@@ -10,11 +10,12 @@ import {AcAffix} from '../../models/affix';
 import {isObservable} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.component";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'ac-field-select',
   standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatSelectModule, MatButton, AcDynamicButtonComponent],
+  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatSelectModule, MatButton, AcDynamicButtonComponent, MatInput],
   templateUrl: './field-select.component.html',
   styleUrls: ['./field-select.component.scss'],
 })
@@ -34,7 +35,7 @@ export class AcFieldSelectComponent extends AbstractControlFieldComponent<AcFiel
 
   buttonAction(b: AcAffix) {
     if (b.action && this.field && this.group) {
-      b.action(this.field, this.group, this.dynamicFormService.pathFieldMap);
+      b.action(this.field, this.group, this.dynamicFormService.data!);
     }
   }
 

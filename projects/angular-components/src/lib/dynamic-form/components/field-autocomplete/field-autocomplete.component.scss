@@ -1,12 +1,11 @@
-.form-field-autocomplete mat-form-field {
+.ac-form-field-autocomplete mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
 }
 
-.form-field-autocomplete mat-form-field[hidden] {
+.ac-form-field-autocomplete mat-form-field[hidden] {
   display: none;
 }
 
-.form-field-autocomplete-prefix, .form-field-autocomplete-suffix {
-  padding: 0 10px;
+.ac-form-field-autocomplete-prefix, .ac-form-field-autocomplete-suffix {
+  padding: 0 2rem;
 }

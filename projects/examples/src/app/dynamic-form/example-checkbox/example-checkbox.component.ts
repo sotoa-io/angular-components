@@ -19,6 +19,11 @@ export class ExampleCheckboxComponent {
         name: 'checkbox',
         label: 'Checkbox',
       },
+      {
+        type: 'checkbox',
+        name: 'checkboxRouter',
+        label: 'Checkbox <a href="/">Accueil</a>',
+      },
     ],
   };
 }

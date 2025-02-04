@@ -9,13 +9,13 @@ import { FormArray, FormControl, FormGroup } from "@angular/forms";
 
 export type AcFieldConfig = AcControlConfig | AcGroupConfig | AcArrayConfig | AcRowConfig | AcTabsConfig;
 
-export type PathFieldMap = Map<string, FormField>;
-export type IdPathMap = Map<string, string | PathArrayInstance[]>;
-
-export type FormField = {
-  config: AcFieldConfig | AcTextConfig | StepConfig;
-  control: FormControl | FormGroup | FormArray | null;
-}
+export type DynamicFormData = {
+  fields: (AcFieldConfig | AcTextConfig)[] | StepConfig[];
+  updateOn: UpdateOnType;
+  idPathMap: Map<string, string[]>;
+  pathFieldConfigMap: Map<string, AcFieldConfig | AcTextConfig | StepConfig>;
+  pathControlMap: Map<string, FormControl | FormGroup | FormArray>;
+};
 
 export type PathArrayInstance = {
   path: string;
@@ -23,4 +23,4 @@ export type PathArrayInstance = {
   arrayInstance: number;
 }
 
-export type UpdateOn = "change" | "blur" | "submit" | undefined;
+export type UpdateOnType = "change" | "blur" | "submit" | undefined;

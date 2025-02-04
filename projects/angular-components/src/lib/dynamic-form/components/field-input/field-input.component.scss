@@ -1,12 +1,11 @@
-.form-field-input mat-form-field {
+.ac-form-field-input mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
 }
 
-.form-field-input mat-form-field[hidden] {
+.ac-form-field-input mat-form-field[hidden] {
   display: none;
 }
 
-.form-field-input-prefix, .form-field-input-suffix {
-  padding: 0 10px;
+.ac-form-field-input-prefix, .ac-form-field-input-suffix {
+  padding: 0 0.5rem;
 }

@@ -1,5 +1,4 @@
-.form-field-textarea {
-  margin-bottom: 20px;
+.ac-form-field-textarea {
 
   mat-form-field {
     width: 100%;
@@ -9,7 +8,7 @@
     display: none;
   }
 
-  .form-field-textarea-prefix, .form-field-textarea-suffix {
-    padding: 0 10px;
+  .ac-form-field-textarea-prefix, .ac-form-field-textarea-suffix {
+    padding: 0 0.5rem;
   }
 }

@@ -115,30 +115,28 @@ export class ExampleDynamicFormComponent {
         }
       }
     ],
-    buttons: {
-      list: [
-        {
-          type: 'button',
-          label: 'Button',
-          action: (form: FormGroup) => {
-            console.log('button', form);
-          }
-        },
-        {
-          type: 'submit',
-          label: 'Button Submit',
-          action: (form: FormGroup) => {
-            console.log('submit', form);
-          }
-        },
-        {
-          type: 'reset',
-          label: 'Button Reset',
-          action: (form: FormGroup) => {
-            console.log('reset', form);
-          }
+    buttons: [
+      {
+        type: 'button',
+        label: 'Button',
+        action: (form: FormGroup) => {
+          console.log('button', form);
         }
-      ]
-    }
+      },
+      {
+        type: 'submit',
+        label: 'Button Submit',
+        action: (form: FormGroup) => {
+          console.log('submit', form);
+        }
+      },
+      {
+        type: 'reset',
+        label: 'Button Reset',
+        action: (form: FormGroup) => {
+          console.log('reset', form);
+        }
+      }
+    ]
   }
 }

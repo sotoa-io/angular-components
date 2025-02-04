@@ -1,18 +1,18 @@
-<div
+<fieldset
   class="ac-form-field ac-form-field-radiobutton"
   [ngClass]="field.className"
   [formGroup]="group"
 >
-  <label [attr.id]="'radiobutton-'+field.name" class="ac-form-field-radiobutton-label">
+  <legend [attr.id]="'radiobutton-'+uuid" class="ac-form-field-radiobutton-label">
     {{ field.label }} {{ !!required ? '*' : '' }}
     @if (field.description) {
       <span class="radiobutton-description">{{ field.description }}</span>
     }
-  </label>
+  </legend>
   <mat-radio-group class="ac-form-field-radiobutton-content"
-                   [attr.aria-labelledby]="'radiobutton-'+field.name"
+                   [id]="uuid"
+                   [attr.aria-labelledby]="'radiobutton-'+uuid"
                    [formControlName]="field.name"
-                   [color]="field.color ?? 'primary'"
                    [ngClass]="{'verticalAlign': field.verticalAlign, 'horizontalAlign': !field.verticalAlign}"
   >
     @if (field.options) {
@@ -30,4 +30,4 @@
       <mat-error>{{ validation.message }}</mat-error>
     }
   }
-</div>
+</fieldset>

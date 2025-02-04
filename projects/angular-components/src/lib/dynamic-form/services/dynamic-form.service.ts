@@ -5,15 +5,13 @@ import {AcControlConfig} from "../models/control-config";
 import {AcValidator} from "../models/validator";
 import {AcTextConfig} from "../models/text-config";
 import {AcGroupConfig} from "../models/group-config";
-import {AcFieldConfig, IdPathMap, PathArrayInstance, PathFieldMap, UpdateOn} from "../models/field-config";
+import {AcFieldConfig, DynamicFormData, UpdateOnType} from "../models/field-config";
 import {AcArrayConfig} from "../models/array-config";
-import {AcRowConfig} from "../models/row-config";
 import {StepConfig} from "../models/step-config";
-import * as _ from "lodash";
+import * as _ from "lodash-es";
 import {AcCondition} from "../models/condition";
 import {ConditionsService} from "./conditions.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {isArray} from "lodash";
 
 @Injectable({
   providedIn: null
@@ -23,20 +21,25 @@ export class DynamicFormService {
   private conditionsService: ConditionsService = inject(ConditionsService);
   private destroyRef = inject(DestroyRef);
   private separator: string = ".";
-  pathFieldMap: PathFieldMap = new Map();
-  idPathMap: IdPathMap = new Map();
+  data?: DynamicFormData;
+  form?: FormGroup;
   displayConditions: { fieldId: string; condition: AcCondition }[] = [];
   validationConditions: { fieldId: string; validation: AcValidator }[] = [];
-  form?: FormGroup;
 
   createForm(
     fields: (AcFieldConfig | AcTextConfig)[],
     validations: AcValidator[] | undefined,
-    updateOn: UpdateOn,
+    updateOn: UpdateOnType,
     initialValues: any
   ): void {
-    this.pathFieldMap = new Map();
-    this.form = this.createGroup(fields, null, updateOn, initialValues, null, null);
+    this.data = {
+      fields,
+      updateOn,
+      idPathMap: new Map(),
+      pathFieldConfigMap: new Map(),
+      pathControlMap: new Map(),
+    };
+    this.form = this.createGroup(fields, null, initialValues);
     if (validations) {
       for (const valid of validations) {
         if (valid.validator) {
@@ -50,14 +53,20 @@ export class DynamicFormService {
   createFormStepper(
     steps: StepConfig[],
     validations: AcValidator[] | undefined,
-    updateOn: UpdateOn,
+    updateOn: UpdateOnType,
     initialValues: any
   ): void {
-    this.pathFieldMap = new Map();
+    this.data = {
+      fields: steps,
+      updateOn,
+      idPathMap: new Map(),
+      pathFieldConfigMap: new Map(),
+      pathControlMap: new Map(),
+    };
     const config: AbstractControlOptions = updateOn ? {updateOn} : {updateOn: "change"};
     this.form = this.fb.group({}, config);
     steps.forEach((step) => {
-      this.form!.addControl(step.name, this.createGroup(step.fields, null, updateOn, initialValues, null, null));
+      this.form!.addControl(step.name, this.createGroup(step.fields, null, initialValues));
     });
     if (validations) {
       for (const valid of validations) {
@@ -71,14 +80,14 @@ export class DynamicFormService {
 
   setCondition() {
     if (this.displayConditions.length > 0 || this.validationConditions.length > 0) {
-      this.conditionsService.checkDisplayConditions(this.displayConditions, this.pathFieldMap, this.idPathMap);
-      this.conditionsService.checkValidationConditions(this.validationConditions, this.pathFieldMap, this.idPathMap);
+      this.conditionsService.checkDisplayConditions(this.displayConditions, this.data!);
+      this.conditionsService.checkValidationConditions(this.validationConditions, this.data!);
       this.form!.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
         if (this.displayConditions.length > 0) {
-          this.conditionsService.checkDisplayConditions(this.displayConditions, this.pathFieldMap, this.idPathMap);
+          this.conditionsService.checkDisplayConditions(this.displayConditions, this.data!);
         }
         if (this.validationConditions.length > 0) {
-          this.conditionsService.checkValidationConditions(this.validationConditions, this.pathFieldMap, this.idPathMap);
+          this.conditionsService.checkValidationConditions(this.validationConditions, this.data!);
         }
       });
     }
@@ -86,16 +95,13 @@ export class DynamicFormService {
 
   createGroup(
     fields: (AcFieldConfig | AcTextConfig)[],
-    parent: string | null,
-    updateOn: UpdateOn,
-    initialValues: any,
-    arrayCode: string | null,
-    arrayInstance: number | null
+    parentPath: string | null,
+    initialValues: any
   ) {
-    const config: AbstractControlOptions = updateOn ? {updateOn} : {updateOn: "change"};
+    const config: AbstractControlOptions = {updateOn: this.data?.updateOn ?? "change"};
     const group = this.fb.group({}, config);
     fields.forEach((config) => {
-      this.treatField(config, group, parent, updateOn, initialValues, arrayCode, arrayInstance);
+      this.treatField(config, group, parentPath, initialValues);
     });
     return group;
   }
@@ -103,13 +109,10 @@ export class DynamicFormService {
   treatField(
     config: AcFieldConfig | AcTextConfig,
     group: FormGroup,
-    parent: string | null,
-    updateOn: UpdateOn,
-    initialValues: any,
-    arrayCode: string | null,
-    arrayInstance: number | null
+    parentPath: string | null,
+    initialValues: any
   ) {
-    const path = (parent ? parent + this.separator : "") + config.name;
+    const path = (parentPath ? parentPath + this.separator : "") + config.name;
     if (!config.id) {
       config.id = config.name;
     }
@@ -130,44 +133,38 @@ export class DynamicFormService {
       })
     }
     if (config.type === "text") {
-      this.setFormFieldMapItem(path, config, null, arrayCode, arrayInstance);
+      this.setFormFieldMapItem(path, config, null);
     } else if (config.type === "group") {
-      group.addControl(config.name, this.createGroupField(config, parent, updateOn, initialValues, arrayCode, arrayInstance));
+      group.addControl(config.name, this.createGroupField(config, parentPath, initialValues));
     } else if (config.type === "array") {
-      group.addControl(config.name, this.createArray(config as AcArrayConfig, parent, updateOn, initialValues, arrayCode, arrayInstance));
+      group.addControl(config.name, this.createArray(config, parentPath, initialValues));
     } else if (config.type === "row") {
-      this.setFormFieldMapItem(path, config, null, arrayCode, arrayInstance);
-      (config as AcRowConfig).fields.forEach((child) => {
-        this.treatField(child, group, parent, updateOn, initialValues, arrayCode, arrayInstance);
+      this.setFormFieldMapItem(path, config, null);
+      config.fields.forEach((child) => {
+        this.treatField(child, group, parentPath, initialValues);
       });
     } else if (config.type === "tabs") {
       const control = this.createGroup(
         config.tabs.map((x) => x.field),
-        parent,
-        updateOn,
-        initialValues ? initialValues[config.name] : null,
-        arrayCode,
-        arrayInstance
+        parentPath,
+        initialValues ? initialValues[config.name] : null
       );
       group.addControl(config.name, control);
-      this.setFormFieldMapItem(path, config, control, arrayCode, arrayInstance);
+      this.setFormFieldMapItem(path, config, control);
     } else {
       const control = this.createControl(config, initialValues);
-      this.setFormFieldMapItem(path, config, control, arrayCode, arrayInstance);
+      this.setFormFieldMapItem(path, config, control);
       group.addControl(config.name, control);
     }
   }
 
   createGroupField(
     groupConfig: AcGroupConfig,
-    parent: string | null,
-    updateOn: UpdateOn,
-    initialValues: any,
-    arrayCode: string | null,
-    arrayInstance: number | null
+    parentPath: string | null,
+    initialValues: any
   ) {
-    const path = (parent ? parent + this.separator : "") + groupConfig.name;
-    const g: FormGroup = this.createGroup(groupConfig.fields, path, updateOn, initialValues ? initialValues[groupConfig.name] : null, arrayCode, arrayInstance);
+    const path = (parentPath ? parentPath + this.separator : "") + groupConfig.name;
+    const g: FormGroup = this.createGroup(groupConfig.fields, path, initialValues ? initialValues[groupConfig.name] : null);
     if (groupConfig.validations) {
       const val = groupConfig.validations.filter((x: AcValidator) => x.validator).map((x: AcValidator) => x.validator);
       if (val) {
@@ -181,19 +178,30 @@ export class DynamicFormService {
         g.addAsyncValidators(asyncVal);
       }
     }
-    this.setFormFieldMapItem(path, groupConfig, g, arrayCode, arrayInstance);
+    this.setFormFieldMapItem(path, groupConfig, g);
     return g;
+  }
+
+  createArrayInstance(arrayConfig: AcArrayConfig, arrayPath: string, instanceNumber: number, initialValues: any): FormGroup {
+    const fields = _.cloneDeep(arrayConfig.field.fields);
+    const grp = this.createGroup(fields, `${arrayPath}[${instanceNumber}]`, initialValues);
+    if (!arrayConfig.instances) {
+      arrayConfig.instances = [];
+    }
+    arrayConfig.instances.push({
+      number: instanceNumber,
+      group: grp,
+      fields,
+    });
+    return grp;
   }
 
   createArray(
     arrayConfig: AcArrayConfig,
-    parent: string | null,
-    updateOn: UpdateOn,
-    initialValues: any,
-    arrayCode: string | null,
-    arrayInstance: number | null
+    parentPath: string | null,
+    initialValues: any
   ): FormArray {
-    const path = (parent ? parent + this.separator : "") + arrayConfig.name;
+    const path = (parentPath ? parentPath + this.separator : "") + arrayConfig.name;
     arrayConfig.instances = [];
     const list: FormGroup[] = [];
     let value = arrayConfig.value;
@@ -203,27 +211,13 @@ export class DynamicFormService {
     let i = 0;
     if (value) {
       for (const item of value) {
-        const fields = _.cloneDeep(arrayConfig.field.fields);
-        const grp = this.createGroup(arrayConfig.field.fields, `${path}[${i}]`, updateOn, item, path, i);
-        arrayConfig.instances.push({
-          number: i,
-          group: grp,
-          fields
-        });
-        list.push(grp);
+        list.push(this.createArrayInstance(arrayConfig, path, i, item));
         i++;
       }
     }
     if (arrayConfig.minNbRow && arrayConfig.minNbRow > list.length) {
       while (arrayConfig.minNbRow > list.length) {
-        const fields = _.cloneDeep(arrayConfig.field.fields);
-        const grp = this.createGroup(arrayConfig.field.fields, `${path}[${i}]`, updateOn, null, path, i);
-        arrayConfig.instances.push({
-          number: i,
-          group: grp,
-          fields
-        });
-        list.push(grp);
+        list.push(this.createArrayInstance(arrayConfig, path, i, null));
         i++;
       }
     }
@@ -242,36 +236,32 @@ export class DynamicFormService {
         formArray.addAsyncValidators(asyncVal);
       }
     }
-    this.setFormFieldMapItem(path, arrayConfig, formArray, arrayCode, arrayInstance);
+    this.setFormFieldMapItem(path, arrayConfig, formArray);
     return formArray;
   }
 
   setFormFieldMapItem(
     path: string,
     config: AcFieldConfig | AcTextConfig | StepConfig,
-    control: FormControl | FormGroup | FormArray | null,
-    arrayCode: string | null,
-    arrayInstance: number | null
+    control: FormControl | FormGroup | FormArray | null
   ) {
-    console.log(config.id);
-    this.pathFieldMap.set(path, {config, control});
-    if (arrayCode == null) {
-      this.idPathMap.set(config.id!, path);
-    } else {
-      if (!this.idPathMap.get(config.id!)) {
-        this.idPathMap.set(config.id!, []);
-      }
-      if(!isArray((this.idPathMap.get(config.id!)))) {
-        throw new Error("Erreur!!!!");
-      }
-      (this.idPathMap.get(config.id!) as PathArrayInstance[]).push({path, arrayCode, arrayInstance: arrayInstance!});
+    if (control) {
+      this.data!.pathControlMap.set(path, control);
     }
+    this.data!.pathFieldConfigMap.set(path, config);
+    if (!this.data!.idPathMap.get(config.id!)) {
+      this.data!.idPathMap.set(config.id!, []);
+    }
+    this.data!.idPathMap.get(config.id!)?.push(path);
   }
 
   createControl(config: AcControlConfig, initialValues: any) {
     let {disabled, validations, value} = config;
     if (initialValues && Object.keys(initialValues).indexOf(config.name) !== -1) {
       value = initialValues[config.name];
+    }
+    if (value === undefined) {
+      value = null;
     }
     const control = this.fb.control({disabled, value});
     if (validations) {
@@ -290,65 +280,4 @@ export class DynamicFormService {
     return control;
   }
 
-  /*
-  updateForm(fields: (AcFieldConfig | AcTextConfig)[]) {
-      if (this.form) {
-          this.updateGroup(this.form, fields);
-      }
-  }
-
-  updateGroup(form: FormGroup, fields: (AcFieldConfig | AcTextConfig)[]) {
-      this.removeItems(form, fields);
-      this.addItems(form, fields);
-      this.updateItems(form, fields);
-  }
-
-  removeItems(form: FormGroup, fields: (AcFieldConfig | AcTextConfig)[]) {
-      const newControls = (fields.filter(x => x.type !== 'text') as AcFieldConfig[])
-          .map(item => item.name);
-      Object.keys(form.controls)
-          .filter((control) => !newControls.includes(control))
-          .forEach((control) => form.removeControl(control));
-  }
-
-  addItems(form: FormGroup, fields: (AcFieldConfig | AcTextConfig)[]) {
-      const formFields = fields.filter(x => x.type !== 'text') as AcFieldConfig[];
-      formFields
-          .map((item) => item.name)
-          .filter((name) => name && !Object.keys(form.controls).includes(name))
-          .forEach((name) => {
-              if (name) {
-                  const config = formFields.find((control) => control.name === name);
-                  if (config && config.type === 'group') {
-                      form.addControl(name, this.createGroup((config as AcGroupConfig).fields as AcControlConfig[], "change", null));
-                  } else if (config) {
-                      form.addControl(name, this.createControl(config as AcControlConfig, null));
-                  }
-              }
-          });
-  }
-
-  updateItems(form: FormGroup, fields: (AcFieldConfig | AcTextConfig)[]) {
-      const newControls = (fields.filter(x => x.type !== 'text') as AcFieldConfig[]);
-      const keys = newControls.map(item => item.name);
-      Object.keys(form.controls)
-          .filter((control) => keys.includes(control))
-          .forEach((control) => {
-              const groupItem = (fields.filter(x => x.type === 'group') as AcGroupConfig[]).filter(x => x.name === control)[0];
-              if (groupItem) {
-                  this.updateGroup(form.get(control) as FormGroup, (groupItem.fields) as AcControlConfig[]);
-              } else {
-                  const fieldItem = (fields.filter(x => x.type !== 'text' && x.type !== 'group') as AcControlConfig[]).filter(x => x.name === control)[0];
-                  const formControl = form.get(control);
-                  if (formControl != null && fieldItem && fieldItem.disabled) {
-                      formControl.disable();
-                  }
-                  if (formControl != null && fieldItem && !fieldItem.disabled) {
-                      formControl.enable();
-                  }
-              }
-          });
-  }
-
-   */
 }

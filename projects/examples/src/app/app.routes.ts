@@ -22,6 +22,7 @@ import {
   ExampleTableExternaldataComponent
 } from "./dynamique-table/example-table-externaldata/example-table-externaldata.component";
 import {ExamplesButtonComponent} from "./dynamique-button/examples-button/examples-button.component";
+import {ExampleLoginComponent} from "./dynamic-form/example-login/example-login.component";
 
 export const routes: Routes = [
   {
@@ -91,5 +92,9 @@ export const routes: Routes = [
   {
     path: 'custom',
     component: ExampleCustomComponent,
+  },
+  {
+    path: 'example-login',
+    component: ExampleLoginComponent,
   },
 ];

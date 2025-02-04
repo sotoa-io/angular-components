@@ -1,7 +1,6 @@
 import {PipeTransform, Type} from '@angular/core';
 import {AcTableCell} from './table-cell';
-import {AcDynamicButtonType} from "../../dynamic-button/dynamic-button";
-import {ThemePalette} from "@angular/material/core";
+import {AcMaterialButtonType} from "../../dynamic-button/dynamic-button";
 
 export interface AcTableColumn {
   key: string; // La clé de la colonne - attribut de l'objet à afficher ex: user.nom => on affiche la valeur de row.user.nom
@@ -19,12 +18,11 @@ export interface AcTableColumn {
   buttonsGroupClassName?: string; // Permet de rajouter une classe au groupe de boutons de la cellule
   buttons?: { // Permet de rajouter x boutons à la cellule
     matIcon?: string;
-    matType?: AcDynamicButtonType;
+    matType?: AcMaterialButtonType;
     label?: string;
     title?: string;
     ariaLabel?: string;
     link?: boolean;
-    color?: ThemePalette;
     getLabel?: (element: any, column?: AcTableColumn) => string;
     visible?: (element?: any, column?: AcTableColumn) => boolean;
     disabled?: (element?: any, column?: AcTableColumn) => boolean;

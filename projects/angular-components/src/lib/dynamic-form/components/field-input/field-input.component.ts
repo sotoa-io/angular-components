@@ -24,7 +24,7 @@ export class AcFieldInputComponent extends AbstractControlFieldComponent<AcField
 
   buttonAction(b: AcAffix) {
     if (b.action && this.field && this.group) {
-      b.action(this.field, this.group, this.dynamicFormService.pathFieldMap);
+      b.action(this.field, this.group, this.dynamicFormService.data!);
     }
   }
 

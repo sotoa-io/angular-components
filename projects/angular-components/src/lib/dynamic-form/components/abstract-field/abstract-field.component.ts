@@ -1,9 +1,7 @@
 import {Component, inject} from '@angular/core';
-import {AcFieldConfig} from "../../models/field-config";
 import {AbstractControl, FormGroup, Validators} from '@angular/forms';
 import {AbstractFieldConfig} from '../../models/abstract-field-config';
 import {DynamicFormService} from "../../services/dynamic-form.service";
-import {AcTextConfig} from "../../models/text-config";
 
 @Component({standalone: true, template: ''})
 export class AbstractFieldComponent<T extends AbstractFieldConfig> {

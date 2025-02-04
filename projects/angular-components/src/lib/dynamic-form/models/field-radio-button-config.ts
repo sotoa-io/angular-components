@@ -10,5 +10,4 @@ export interface AcFieldRadioButtonConfig extends AbstractControlConfig {
   labelKey?: string;
   valueKey?: string;
   disabledKey?: string;
-  color?: ThemePalette;
 }

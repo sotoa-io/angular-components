@@ -61,7 +61,6 @@ export class AcFieldCustomDirective extends NgControl implements OnChanges, OnIn
     this.valueAccessor = this.component.instance;
     this.component.instance.field = this.field();
     this.component.instance.group = this.group();
-    console.log(this.formDirective, this);
     if (this.formDirective) {
       this.pcontrol = this.formDirective.addControl(this);
     }

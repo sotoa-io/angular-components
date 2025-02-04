@@ -4,10 +4,9 @@
   [formGroup]="group"
 >
   <mat-form-field>
-    <mat-label>
-      {{ field.label }}
-    </mat-label>
+    <mat-label><span [innerHTML]="field.label"></span></mat-label>
     <textarea matInput
+              [id]="uuid"
               [placeholder]="field.placeholder ?? ''"
               [formControlName]="field.name"
               [readonly]="field.readonly"

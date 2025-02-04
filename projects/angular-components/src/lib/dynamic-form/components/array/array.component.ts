@@ -10,9 +10,9 @@ import {MatButton} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatError} from "@angular/material/form-field";
 import {AbstractControlFieldComponent} from "../abstract-field/abstract-control-field.component";
-import {AcFieldConfig, PathFieldMap} from "../../models/field-config";
+import {AcFieldConfig} from "../../models/field-config";
 import {AcTextConfig} from "../../models/text-config";
-import * as _ from "lodash";
+import * as _ from "lodash-es";
 
 @Component({
   selector: "ac-array",
@@ -45,9 +45,8 @@ export class AcArrayComponent extends AbstractControlFieldComponent<AcArrayConfi
 
   addItem() {
     const i = this.field.instances!.length > 0 ? this.field.instances![this.field.instances!.length - 1].number + 1 : 0;
-    const map: PathFieldMap = new Map();
     const fields = _.cloneDeep(this.field.field.fields);
-    const grp = this.dynamicService.createGroup(fields, `${this.path}[${i}]`, undefined, null, this.path, i);
+    const grp = this.dynamicService.createGroup(fields, `${this.path}[${i}]`, null);
     this.field.instances!.push({
       number: i,
       group: grp,
@@ -58,12 +57,16 @@ export class AcArrayComponent extends AbstractControlFieldComponent<AcArrayConfi
   }
 
   deleteItem(index: number, inst: { number: number; group: FormGroup, fields: (AcFieldConfig | AcTextConfig)[] }) {
+    /*
+    TODO
     this.field.instances!.splice(index, 1);
     for (const key of this.dynamicService.pathFieldMap.keys()) {
       if (key.startsWith(`${this.path}[${inst.number}]`)) {
         this.dynamicFormService.pathFieldMap.delete(key);
       }
     }
+
+     */
     this.array.removeAt(index);
     this.ref.detectChanges();
   }

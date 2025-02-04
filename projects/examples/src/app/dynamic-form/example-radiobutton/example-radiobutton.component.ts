@@ -19,7 +19,6 @@ export class ExampleRadiobuttonComponent {
         type: 'radio',
         name: 'radio',
         label: 'Radio',
-        color: 'warn',
         options: [
           {code: 'Option 1', name: 'Option 1'},
           {code: 'Option 2', name: 'Option 2'},

@@ -4,16 +4,18 @@
                   [attr.id]="'text-checkbox-' + field.name"
                   color="primary"
     >
-      {{ field.label }}
+      <span [innerHTML]="field.label"></span>
       @if (required) {
         <span class="red">*</span>
       }
     </mat-checkbox>
 
-    <div class="fr-messages-group" [attr.id]="'text-checkbox-' + field.name + '-error'" aria-live="assertive">
-      @for (validation of field.validations; track validation) {
-        @if (control && !control.untouched && control.hasError(validation.name)) {
-          <mat-error>{{ validation.message }}</mat-error>
+    <div class="error-wrapper" matError>
+      @if (control && !control.untouched && control.invalid) {
+        @for (validation of field.validations; track validation) {
+          @if (control.hasError(validation.name)) {
+            {{ validation.message }}
+          }
         }
       }
     </div>
