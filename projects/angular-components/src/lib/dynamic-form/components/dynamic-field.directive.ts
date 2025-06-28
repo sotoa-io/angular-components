@@ -28,6 +28,7 @@ import {AcTabsComponent} from "./tabs/tabs.component";
 import {AcFieldDateComponent} from "./field-date/field-date.component";
 import {AcFieldFileComponent} from "./field-file/field-file.component";
 import {AcFieldToggleComponent} from "./field-toggle/field-toggle.component";
+import {AcFieldPasswordComponent} from "./field-password/field-password.component";
 
 const components: { [type: string]: Type<AcField> } = {
   group: AcGroupComponent,
@@ -44,7 +45,8 @@ const components: { [type: string]: Type<AcField> } = {
   customField: AcFieldCustomComponent,
   tabs: AcTabsComponent,
   file: AcFieldFileComponent,
-  toggle: AcFieldToggleComponent
+  toggle: AcFieldToggleComponent,
+  password: AcFieldPasswordComponent
 };
 
 @Directive({

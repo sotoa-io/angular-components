@@ -1,7 +1,8 @@
 <div class="ac-form-field ac-form-field-checkbox" [ngClass]="field.className">
   <div [formGroup]="group">
     <mat-checkbox [formControlName]="field.name"
-                  [attr.id]="'text-checkbox-' + field.name"
+                  [id]="uuid"
+                  [aria-describedby]="'error-' + uuid"
                   color="primary"
     >
       <span [innerHTML]="field.label"></span>
@@ -10,7 +11,7 @@
       }
     </mat-checkbox>
 
-    <div class="error-wrapper" matError>
+    <div [id]="'error-' + uuid" class="error-wrapper" matError>
       @if (control && !control.untouched && control.invalid) {
         @for (validation of field.validations; track validation) {
           @if (control.hasError(validation.name)) {

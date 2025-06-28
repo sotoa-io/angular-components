@@ -9,6 +9,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {take} from 'rxjs';
 import {AcDynamicButtonComponent} from "../../dynamic-button/dynamic-button.component";
+import {AcButton} from "../models/dynamic-form";
 
 @Component({
   selector: "ac-dynamic-form-modal",
@@ -33,7 +34,7 @@ export class AcDynamicFormModalComponent implements OnInit {
     this.dynamicFormService.createForm(
       this.data.fields,
       this.data.validations,
-      this.data.updateOn ? this.data.updateOn : "change",
+      this.data.updateOn ?? "change",
       this.data.initialObject
     );
   }

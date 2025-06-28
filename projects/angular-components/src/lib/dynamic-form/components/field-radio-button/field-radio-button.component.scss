@@ -13,3 +13,10 @@
   display: flex;
   flex-direction: column;
 }
+
+.ac-form-field-radiobutton-item {
+  ::ng-deep label {
+    display: flex;
+    flex-direction: column;
+  }
+}

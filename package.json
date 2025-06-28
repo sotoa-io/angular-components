@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve --port=4500 --project=examples",
     "build": "ng build --project=angular-components",
+    "build:prod": "ng build --project=angular-components --configuration production",
     "watch": "ng build --watch --configuration development --project=angular-components",
     "test": "ng test"
   },

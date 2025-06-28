@@ -5,20 +5,27 @@
     <p [innerHTML]="data.description"></p>
   }
   @if (form) {
-    @for (field of data.fields; track field) {
-      <div
-        [hidden]="!!field.hidden"
-        [ngClass]="field.hostClassName">
-        <ng-container
-          acDynamicField
-          [path]="field.name"
-          [type]="field.type"
-          [field]="field"
-          [group]="form"
-        >
-        </ng-container>
+    <form class="dynamic-form"
+          [formGroup]="form"
+          [ngClass]="data.className?.form">
+      <div class="dynamic-form-content"
+           [ngClass]="data.className?.formContent">
+        @for (field of data.fields; track field) {
+          <div
+            [hidden]="!!field.hidden"
+            [ngClass]="field.hostClassName">
+            <ng-container
+              acDynamicField
+              [path]="field.name"
+              [type]="field.type"
+              [field]="field"
+              [group]="form"
+            >
+            </ng-container>
+          </div>
+        }
       </div>
-    }
+    </form>
   }
   @if (message) {
     <div [innerHTML]="message"
@@ -28,8 +35,8 @@
 </div>
 
 <div matDialogActions>
-  <div class="modal-action-buttons" [ngClass]="data.buttons.groupClassName">
-    @for (button of data.buttons.list; track $index) {
+  <div class="modal-action-buttons" [ngClass]="data.className?.formButtons">
+    @for (button of data.buttons; track $index) {
       <ac-button [type]="button.type"
                  [className]="button.className"
                  [matType]="'raised'"
@@ -37,6 +44,7 @@
                  [matIcon]="button.matIcon"
                  [label]="button.label"
                  [title]="button.title"
+                 [ariaLabel]="button.ariaLabel"
                  (buttonClick)="onClickButton(button)"
       ></ac-button>
     }

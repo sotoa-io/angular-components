@@ -18,9 +18,14 @@
     @if (field.options) {
       @for (item of field.options; track item) {
         <mat-radio-button
+          class="ac-form-field-radiobutton-item"
+          [ngClass]="field.radioButtonClassName"
           [value]="field.valueKey ? item[field.valueKey] : item"
           [disabled]="field.disabledKey ? item[field.disabledKey] : false">
-          {{ field.labelKey ? item[field.labelKey] : item }}
+          <span class="item-label">{{ field.labelKey ? item[field.labelKey] : item }}</span>
+          @if(field.descriptionKey) {
+            <span class="item-description">{{ item[field.descriptionKey] }}</span>
+          }
         </mat-radio-button>
       }
     }

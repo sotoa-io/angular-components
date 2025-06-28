@@ -15,13 +15,6 @@
            [readonly]="field.readonly"
            [maxlength]="field.maxlength ?? 100000000"
     >
-    @if (field.inputType === 'password') {
-      <button type="button" mat-icon-button matSuffix (click)="tooglePassword()"
-              [attr.aria-label]="inputType === 'password' ? 'Afficher le mot de passe' : 'Cacher le mot de passe'"
-              [attr.aria-pressed]="inputType === 'password'">
-        <mat-icon>{{ inputType === 'password' ? 'visibility_off' : 'visibility' }}</mat-icon>
-      </button>
-    }
     @for (b of field.prefixes; track b) {
       <span class="ac-form-field-input-prefix" matPrefix>
         @if (b.action) {

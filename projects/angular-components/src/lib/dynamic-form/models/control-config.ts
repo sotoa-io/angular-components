@@ -9,6 +9,7 @@ import {AcFieldDateConfig} from './field-date-config';
 import {AcFieldFileConfig} from './field-file-config';
 import {AcFieldEditorConfig} from './field-editor-config';
 import {AcFieldToggleConfig} from './field-toggle-config';
+import {AcFieldPasswordConfig} from "./field-password-config";
 
 export type AcControlConfig =
   | AcFieldCheckboxConfig
@@ -21,4 +22,5 @@ export type AcControlConfig =
   | AcFieldFileConfig
   | AcFieldEditorConfig
   | AcFieldToggleConfig
+  | AcFieldPasswordConfig
   | AcFieldCustomConfig<any>;

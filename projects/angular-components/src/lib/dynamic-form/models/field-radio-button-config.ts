@@ -1,6 +1,4 @@
-import { Observable } from 'rxjs';
-import { ThemePalette } from '@angular/material/core';
-import { AbstractControlConfig } from './abstract-control-config';
+import {AbstractControlConfig} from './abstract-control-config';
 
 export interface AcFieldRadioButtonConfig extends AbstractControlConfig {
   type: 'radio';
@@ -9,5 +7,7 @@ export interface AcFieldRadioButtonConfig extends AbstractControlConfig {
   verticalAlign?: boolean;
   labelKey?: string;
   valueKey?: string;
+  descriptionKey?: string;
   disabledKey?: string;
+  radioButtonClassName?: string;
 }

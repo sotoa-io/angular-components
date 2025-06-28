@@ -3,7 +3,9 @@ import {MatDialog} from '@angular/material/dialog';
 import {
   AcDynamicFormModalComponent
 } from '../../../../../angular-components/src/lib/dynamic-form/dynamic-form-modal/dynamic-form-modal.component';
-import {AcDynamicFormModal} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form-modal';
+import {
+  AcDynamicFormModal
+} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form-modal';
 import {FormGroup, Validators} from '@angular/forms';
 import {of} from 'rxjs';
 
@@ -15,38 +17,36 @@ import {of} from 'rxjs';
   styleUrl: './example-dynamic-form-modal.component.scss'
 })
 export class ExampleDynamicFormModalComponent {
-  private dialog: MatDialog = inject(MatDialog);
-  private data: AcDynamicFormModal = {
+  private readonly dialog: MatDialog = inject(MatDialog);
+  private readonly data: AcDynamicFormModal = {
     title: "Titre de la modal",
     description: "Description de la modal",
-    buttons: {
-      list: [
-        {
-          type: 'button',
-          label: 'Button',
-          action: (form: FormGroup) => {
-            console.log('button', form);
-            return of(false);
-          }
-        },
-        {
-          type: 'submit',
-          label: 'Button Submit',
-          disabledIfFormNoValid: true,
-          action: (form: FormGroup) => {
-            console.log('submit', form);
-            return of({
-              status: 'OK',
-              message: 'Enregistrement OK',
-            });
-          }
-        },
-        {
-          type: 'reset',
-          label: 'Button Reset',
+    buttons: [
+      {
+        type: 'button',
+        label: 'Button',
+        action: (form: FormGroup) => {
+          console.log('button', form);
+          return of(false);
         }
-      ]
-    },
+      },
+      {
+        type: 'submit',
+        label: 'Button Submit',
+        disabledIfFormNoValid: true,
+        action: (form: FormGroup) => {
+          console.log('submit', form);
+          return of({
+            status: 'OK',
+            message: 'Enregistrement OK',
+          });
+        }
+      },
+      {
+        type: 'reset',
+        label: 'Button Reset',
+      }
+    ],
     fields: [
       {
         name: 'inputText',

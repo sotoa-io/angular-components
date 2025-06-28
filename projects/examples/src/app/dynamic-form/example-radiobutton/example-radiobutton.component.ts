@@ -33,14 +33,16 @@ export class ExampleRadiobuttonComponent {
         label: 'Radio',
         description: 'description',
         verticalAlign: true,
+        radioButtonClassName: "test-radio-button",
         options: [
-          {code: 'Option 1', name: 'Option 1', inactive: false},
-          {code: 'Option 2', name: 'Option 2', inactive: false},
-          {code: 'Option 3', name: 'Option 3', inactive: true},
+          {code: 'Option 1', name: 'Option 1', description: 'Description 1', inactive: false},
+          {code: 'Option 2', name: 'Option 2', description: 'Description 1', inactive: false},
+          {code: 'Option 3', name: 'Option 3', description: 'Description 1', inactive: true},
         ],
         valueKey: 'code',
         labelKey: 'name',
-        disabledKey: 'inactive'
+        disabledKey: 'inactive',
+        descriptionKey: 'description',
       },
     ],
   };

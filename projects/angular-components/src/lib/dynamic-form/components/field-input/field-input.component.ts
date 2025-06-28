@@ -40,8 +40,4 @@ export class AcFieldInputComponent extends AbstractControlFieldComponent<AcField
       });
     }
   }
-
-  tooglePassword() {
-    this.inputType = this.inputType === 'password' ? 'text' : 'password';
-  }
 }
