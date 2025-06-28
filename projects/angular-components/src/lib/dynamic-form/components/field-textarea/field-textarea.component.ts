@@ -10,11 +10,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.component";
 
 @Component({
-  selector: 'ac-field-textarea',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent],
-  templateUrl: './field-textarea.component.html',
-  styleUrls: ['./field-textarea.component.scss'],
+    selector: 'ac-field-textarea',
+    imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent],
+    templateUrl: './field-textarea.component.html',
+    styleUrls: ['./field-textarea.component.scss']
 })
 export class AcFieldTextareaComponent extends AbstractControlFieldComponent<AcFieldTextareaConfig> {
   buttonAction(b: AcAffix) {

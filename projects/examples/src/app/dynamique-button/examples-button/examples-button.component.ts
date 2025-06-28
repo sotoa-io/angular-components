@@ -5,11 +5,10 @@ import {
 import {MatDivider} from "@angular/material/divider";
 
 @Component({
-  selector: 'app-examples-button',
-  standalone: true,
-  imports: [AcDynamicButtonComponent, MatDivider],
-  templateUrl: './examples-button.component.html',
-  styleUrl: './examples-button.component.scss'
+    selector: 'app-examples-button',
+    imports: [AcDynamicButtonComponent, MatDivider],
+    templateUrl: './examples-button.component.html',
+    styleUrl: './examples-button.component.scss'
 })
 export class ExamplesButtonComponent {
 

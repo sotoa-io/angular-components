@@ -6,11 +6,10 @@ import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-f
 import {InputRatingComponent} from './input-rating/input-rating.component';
 
 @Component({
-  selector: 'app-example-custom',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-custom.component.html',
-  styleUrl: './example-custom.component.scss'
+    selector: 'app-example-custom',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-custom.component.html',
+    styleUrl: './example-custom.component.scss'
 })
 export class ExampleCustomComponent {
 

@@ -19,19 +19,18 @@ import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.c
 const moment = _rollupMoment || _moment;
 
 @Component({
-  selector: 'ac-field-date',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatDatepickerModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent],
-  providers: [
-    {
-      provide: DateAdapter,
-      useClass: CustomDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-    { provide: MAT_DATE_FORMATS, useClass: MyFormat },
-  ],
-  templateUrl: './field-date.component.html',
-  styleUrls: ['./field-date.component.scss'],
+    selector: 'ac-field-date',
+    imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatDatepickerModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent],
+    providers: [
+        {
+            provide: DateAdapter,
+            useClass: CustomDateAdapter,
+            deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+        },
+        { provide: MAT_DATE_FORMATS, useClass: MyFormat },
+    ],
+    templateUrl: './field-date.component.html',
+    styleUrls: ['./field-date.component.scss']
 })
 export class AcFieldDateComponent extends AbstractControlFieldComponent<AcFieldDateConfig> {
   constructor(

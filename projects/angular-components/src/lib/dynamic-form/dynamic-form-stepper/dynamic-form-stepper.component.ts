@@ -31,19 +31,19 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {AcDynamicButtonComponent} from "../../dynamic-button/dynamic-button.component";
 
 @Component({
-  exportAs: "dynamicFormStepper",
-  selector: "ac-dynamic-form-stepper",
-  standalone: true,
+    exportAs: "dynamicFormStepper",
+    selector: "ac-dynamic-form-stepper",
     imports: [AcDynamicFieldDirective, NgClass, ReactiveFormsModule, MatError,
         MatIconModule, MatButtonModule, NgTemplateOutlet, MatSidenavModule, MatListModule, MatTab, MatTabLabel,
         MatStepperModule, AsyncPipe, AcDynamicButtonComponent],
-  templateUrl: "./dynamic-form-stepper.component.html",
-  styleUrls: ["./dynamic-form-stepper.component.scss"],
-  providers: [
-    DynamicFormService, {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: {showError: true, displayDefaultIndicatorType: false},
-    }]
+    templateUrl: "./dynamic-form-stepper.component.html",
+    styleUrls: ["./dynamic-form-stepper.component.scss"],
+    providers: [
+        DynamicFormService, {
+            provide: STEPPER_GLOBAL_OPTIONS,
+            useValue: { showError: true, displayDefaultIndicatorType: false },
+        }
+    ]
 })
 export class AcDynamicFormStepperComponent implements OnInit, OnChanges {
   private dynamicFormService: DynamicFormService = inject(DynamicFormService);

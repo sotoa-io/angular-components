@@ -5,11 +5,10 @@ import {
 import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form';
 
 @Component({
-  selector: 'app-example-radiobutton',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-radiobutton.component.html',
-  styleUrl: './example-radiobutton.component.scss'
+    selector: 'app-example-radiobutton',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-radiobutton.component.html',
+    styleUrl: './example-radiobutton.component.scss'
 })
 export class ExampleRadiobuttonComponent {
 

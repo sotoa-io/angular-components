@@ -6,13 +6,12 @@ import {
 import {Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-example-dynamic-form-stepper',
-  standalone: true,
-  imports: [
-    AcDynamicFormStepperComponent
-  ],
-  templateUrl: './example-dynamic-form-stepper.component.html',
-  styleUrl: './example-dynamic-form-stepper.component.scss'
+    selector: 'app-example-dynamic-form-stepper',
+    imports: [
+        AcDynamicFormStepperComponent
+    ],
+    templateUrl: './example-dynamic-form-stepper.component.html',
+    styleUrl: './example-dynamic-form-stepper.component.scss'
 })
 export class ExampleDynamicFormStepperComponent {
   config: AcDynamicFormStepper = {

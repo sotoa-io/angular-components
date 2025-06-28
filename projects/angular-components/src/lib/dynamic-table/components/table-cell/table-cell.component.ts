@@ -7,11 +7,10 @@ import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.c
 import {NgClass} from "@angular/common";
 
 @Component({
-  selector: "ac-table-cell",
-  standalone: true,
-  imports: [CustomCellDirective, DynamicPipe, AcDynamicButtonComponent, NgClass],
-  templateUrl: "./table-cell.component.html",
-  styleUrls: ["./table-cell.component.scss"]
+    selector: "ac-table-cell",
+    imports: [CustomCellDirective, DynamicPipe, AcDynamicButtonComponent, NgClass],
+    templateUrl: "./table-cell.component.html",
+    styleUrls: ["./table-cell.component.scss"]
 })
 export class AcTableCellComponent implements OnChanges {
   private toolsService: ToolsService = inject(ToolsService);

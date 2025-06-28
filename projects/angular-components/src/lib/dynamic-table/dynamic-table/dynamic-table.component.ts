@@ -23,12 +23,11 @@ import {Pagination} from "../models/pagination";
 import {NgClass} from "@angular/common";
 
 @Component({
-  selector: 'ac-dynamic-table',
-  standalone: true,
-  imports: [AcTableCellComponent, MatTableModule, MatSortModule, NgClass, MatPaginatorModule],
-  providers: [{provide: MatPaginatorIntl, useClass: MatPaginatorIntlFr}],
-  templateUrl: './dynamic-table.component.html',
-  styleUrls: ['./dynamic-table.component.scss'],
+    selector: 'ac-dynamic-table',
+    imports: [AcTableCellComponent, MatTableModule, MatSortModule, NgClass, MatPaginatorModule],
+    providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorIntlFr }],
+    templateUrl: './dynamic-table.component.html',
+    styleUrls: ['./dynamic-table.component.scss']
 })
 export class AcDynamicTableComponent implements AfterViewInit {
   private toolsService: ToolsService = inject(ToolsService);

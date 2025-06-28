@@ -12,12 +12,11 @@ import {AcDynamicButtonComponent} from "../../dynamic-button/dynamic-button.comp
 import {AcButton} from "../models/dynamic-form";
 
 @Component({
-  selector: "ac-dynamic-form-modal",
-  standalone: true,
+    selector: "ac-dynamic-form-modal",
     imports: [NgClass, ReactiveFormsModule, MatIconModule, MatButtonModule, AcDynamicFieldDirective, MatDialogModule, AcDynamicButtonComponent],
-  templateUrl: "./dynamic-form-modal.component.html",
-  styleUrls: [],
-  providers: [DynamicFormService],
+    templateUrl: "./dynamic-form-modal.component.html",
+    styleUrls: [],
+    providers: [DynamicFormService]
 })
 export class AcDynamicFormModalComponent implements OnInit {
   private dialogRef = inject(MatDialogRef<AcDynamicFormModalComponent>);

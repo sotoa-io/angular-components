@@ -8,10 +8,9 @@ import { AcFieldToggleConfig } from '../../models/field-toggle-config';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
-  selector: 'ac-field-toggle',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatCheckboxModule, MatError, MatSlideToggleModule],
-  templateUrl: './field-toggle.component.html',
-  styleUrls: ['./field-toggle.component.scss'],
+    selector: 'ac-field-toggle',
+    imports: [ReactiveFormsModule, NgClass, MatCheckboxModule, MatError, MatSlideToggleModule],
+    templateUrl: './field-toggle.component.html',
+    styleUrls: ['./field-toggle.component.scss']
 })
 export class AcFieldToggleComponent extends AbstractControlFieldComponent<AcFieldToggleConfig> {}

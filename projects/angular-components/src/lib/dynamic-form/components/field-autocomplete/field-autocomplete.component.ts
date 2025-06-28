@@ -15,11 +15,10 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.component";
 
 @Component({
-  selector: 'ac-field-autocomplete',
-  standalone: true,
+    selector: 'ac-field-autocomplete',
     imports: [MatFormFieldModule, ReactiveFormsModule, NgClass, MatAutocompleteModule, MatIconModule, AsyncPipe, MatButtonModule, MatInputModule, AcDynamicButtonComponent],
-  templateUrl: './field-autocomplete.component.html',
-  styleUrls: ['./field-autocomplete.component.scss'],
+    templateUrl: './field-autocomplete.component.html',
+    styleUrls: ['./field-autocomplete.component.scss']
 })
 export class AcFieldAutocompleteComponent extends AbstractControlFieldComponent<AcFieldAutocompleteConfig> {
   filteredOptions: Observable<any[]> | undefined;

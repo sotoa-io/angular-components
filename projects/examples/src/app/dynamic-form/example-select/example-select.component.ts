@@ -6,11 +6,10 @@ import {
 import {of} from 'rxjs';
 
 @Component({
-  selector: 'app-example-select',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-select.component.html',
-  styleUrl: './example-select.component.scss'
+    selector: 'app-example-select',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-select.component.html',
+    styleUrl: './example-select.component.scss'
 })
 export class ExampleSelectComponent {
   config: AcDynamicForm = {

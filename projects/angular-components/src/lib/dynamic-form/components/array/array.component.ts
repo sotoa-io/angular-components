@@ -15,21 +15,20 @@ import {AcTextConfig} from "../../models/text-config";
 import * as _ from "lodash-es";
 
 @Component({
-  selector: "ac-array",
-  standalone: true,
-  imports: [
-    forwardRef(() => AcDynamicFieldDirective),
-    MatExpansionModule,
-    NgClass,
-    MatIcon,
-    MatButton,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatError,
-    NgTemplateOutlet
-  ],
-  templateUrl: "./array.component.html",
-  styleUrls: ["./array.component.scss"]
+    selector: "ac-array",
+    imports: [
+        forwardRef(() => AcDynamicFieldDirective),
+        MatExpansionModule,
+        NgClass,
+        MatIcon,
+        MatButton,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatError,
+        NgTemplateOutlet
+    ],
+    templateUrl: "./array.component.html",
+    styleUrls: ["./array.component.scss"]
 })
 export class AcArrayComponent extends AbstractControlFieldComponent<AcArrayConfig> {
   private dynamicService: DynamicFormService = inject(DynamicFormService);

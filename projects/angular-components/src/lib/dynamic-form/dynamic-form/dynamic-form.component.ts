@@ -23,13 +23,12 @@ import {AcDynamicButtonComponent} from "../../dynamic-button/dynamic-button.comp
 import * as _ from "lodash-es";
 
 @Component({
-  exportAs: 'dynamicForm',
-  selector: 'ac-dynamic-form',
-  standalone: true,
-  imports: [AcDynamicFieldDirective, NgClass, ReactiveFormsModule, MatError, MatIconModule, MatButtonModule, AcDynamicButtonComponent],
-  templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.scss'],
-  providers: [DynamicFormService],
+    exportAs: 'dynamicForm',
+    selector: 'ac-dynamic-form',
+    imports: [AcDynamicFieldDirective, NgClass, ReactiveFormsModule, MatError, MatIconModule, MatButtonModule, AcDynamicButtonComponent],
+    templateUrl: './dynamic-form.component.html',
+    styleUrls: ['./dynamic-form.component.scss'],
+    providers: [DynamicFormService]
 })
 export class AcDynamicFormComponent {
   private dynamicFormService: DynamicFormService = inject(DynamicFormService);

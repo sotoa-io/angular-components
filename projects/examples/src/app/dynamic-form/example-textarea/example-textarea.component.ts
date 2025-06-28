@@ -5,11 +5,10 @@ import {
 import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form';
 
 @Component({
-  selector: 'app-example-textarea',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-textarea.component.html',
-  styleUrl: './example-textarea.component.scss'
+    selector: 'app-example-textarea',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-textarea.component.html',
+    styleUrl: './example-textarea.component.scss'
 })
 export class ExampleTextareaComponent {
   config: AcDynamicForm = {

@@ -17,18 +17,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
-  selector: 'ac-input-file',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatButtonModule, MatIconModule],
-  templateUrl: './input-file.component.html',
-  styleUrls: ['./input-file.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => AcInputFileComponent),
-    },
-  ],
+    selector: 'ac-input-file',
+    imports: [ReactiveFormsModule, NgClass, MatButtonModule, MatIconModule],
+    templateUrl: './input-file.component.html',
+    styleUrls: ['./input-file.component.scss'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => AcInputFileComponent),
+        },
+    ]
 })
 export class AcInputFileComponent implements OnInit, ControlValueAccessor {
   private destroyRef = inject(DestroyRef);

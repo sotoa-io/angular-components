@@ -6,13 +6,12 @@ import {AcDynamicForm} from "../../../../../angular-components/src/lib/dynamic-f
 import {Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-example-login',
-  standalone: true,
-  imports: [
-    AcDynamicFormComponent
-  ],
-  templateUrl: './example-login.component.html',
-  styleUrl: './example-login.component.scss'
+    selector: 'app-example-login',
+    imports: [
+        AcDynamicFormComponent
+    ],
+    templateUrl: './example-login.component.html',
+    styleUrl: './example-login.component.scss'
 })
 export class ExampleLoginComponent {
   /*

@@ -7,10 +7,9 @@ import { NgClass } from '@angular/common';
 import { MatError } from '@angular/material/form-field';
 
 @Component({
-  selector: 'ac-field-file',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, AcInputFileComponent, MatError],
-  templateUrl: './field-file.component.html',
-  styleUrls: ['./field-file.component.scss'],
+    selector: 'ac-field-file',
+    imports: [ReactiveFormsModule, NgClass, AcInputFileComponent, MatError],
+    templateUrl: './field-file.component.html',
+    styleUrls: ['./field-file.component.scss']
 })
 export class AcFieldFileComponent extends AbstractControlFieldComponent<AcFieldFileConfig> {}

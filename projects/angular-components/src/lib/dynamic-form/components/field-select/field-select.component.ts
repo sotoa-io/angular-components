@@ -13,11 +13,10 @@ import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.c
 import {MatInput} from "@angular/material/input";
 
 @Component({
-  selector: 'ac-field-select',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatSelectModule, MatButton, AcDynamicButtonComponent, MatInput],
-  templateUrl: './field-select.component.html',
-  styleUrls: ['./field-select.component.scss'],
+    selector: 'ac-field-select',
+    imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatSelectModule, MatButton, AcDynamicButtonComponent, MatInput],
+    templateUrl: './field-select.component.html',
+    styleUrls: ['./field-select.component.scss']
 })
 export class AcFieldSelectComponent extends AbstractControlFieldComponent<AcFieldSelectConfig> {
   options: any[] = [];

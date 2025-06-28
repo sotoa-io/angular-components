@@ -6,11 +6,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { NgClass } from "@angular/common";
 
 @Component({
-  selector: "ac-field-custom",
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, AcFieldCustomDirective],
-  templateUrl: "./field-custom.component.html",
-  styleUrls: ["./field-custom.component.scss"]
+    selector: "ac-field-custom",
+    imports: [ReactiveFormsModule, NgClass, AcFieldCustomDirective],
+    templateUrl: "./field-custom.component.html",
+    styleUrls: ["./field-custom.component.scss"]
 })
 export class AcFieldCustomComponent extends AbstractControlFieldComponent<AcFieldCustomConfig<any>> {
 }

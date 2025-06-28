@@ -5,11 +5,10 @@ import {
 import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form';
 
 @Component({
-  selector: 'app-example-file',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-file.component.html',
-  styleUrl: './example-file.component.scss'
+    selector: 'app-example-file',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-file.component.html',
+    styleUrl: './example-file.component.scss'
 })
 export class ExampleFileComponent {
 

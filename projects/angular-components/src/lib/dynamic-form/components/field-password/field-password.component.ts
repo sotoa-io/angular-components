@@ -13,11 +13,10 @@ import {AcFieldPasswordConfig} from "../../models/field-password-config";
 import {PasswordValidators} from "./password-validators";
 
 @Component({
-  selector: 'ac-field-password',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent, JsonPipe],
-  templateUrl: './field-password.component.html',
-  styleUrls: ['./field-password.component.scss'],
+    selector: 'ac-field-password',
+    imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent, JsonPipe],
+    templateUrl: './field-password.component.html',
+    styleUrls: ['./field-password.component.scss']
 })
 export class AcFieldPasswordComponent extends AbstractControlFieldComponent<AcFieldPasswordConfig> implements OnInit {
   inputType: string = 'password';

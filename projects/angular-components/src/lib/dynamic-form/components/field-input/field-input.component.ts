@@ -13,11 +13,10 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {AcDynamicButtonComponent} from "../../../dynamic-button/dynamic-button.component";
 
 @Component({
-  selector: 'ac-field-input',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent],
-  templateUrl: './field-input.component.html',
-  styleUrls: ['./field-input.component.scss'],
+    selector: 'ac-field-input',
+    imports: [ReactiveFormsModule, NgClass, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule, AcDynamicButtonComponent],
+    templateUrl: './field-input.component.html',
+    styleUrls: ['./field-input.component.scss']
 })
 export class AcFieldInputComponent extends AbstractControlFieldComponent<AcFieldInputConfig> implements OnInit {
   inputType: string = 'text';

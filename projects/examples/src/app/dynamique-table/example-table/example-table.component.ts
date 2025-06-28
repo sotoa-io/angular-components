@@ -9,12 +9,11 @@ import {CustomCheckCellComponent} from "../custom-check-cell/custom-check-cell.c
 
 
 @Component({
-  selector: 'app-example-table',
-  standalone: true,
-  imports: [AcDynamicTableComponent],
-  templateUrl: './example-table.component.html',
-  styleUrl: './example-table.component.scss',
-  providers: [DatePipe]
+    selector: 'app-example-table',
+    imports: [AcDynamicTableComponent],
+    templateUrl: './example-table.component.html',
+    styleUrl: './example-table.component.scss',
+    providers: [DatePipe]
 })
 export class ExampleTableComponent implements OnInit {
 

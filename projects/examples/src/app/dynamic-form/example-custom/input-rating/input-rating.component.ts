@@ -6,20 +6,19 @@ import {
 import {MatIcon} from '@angular/material/icon';
 
 @Component({
-  selector: 'app-input-rating',
-  templateUrl: './input-rating.component.html',
-  styleUrls: ['./input-rating.component.scss'],
-  standalone: true,
-  imports: [
-    MatIcon
-  ],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputRatingComponent),
-      multi: true
-    }
-  ]
+    selector: 'app-input-rating',
+    templateUrl: './input-rating.component.html',
+    styleUrls: ['./input-rating.component.scss'],
+    imports: [
+        MatIcon
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => InputRatingComponent),
+            multi: true
+        }
+    ]
 })
 export class InputRatingComponent extends AcCustomComponentField implements OnInit {
 

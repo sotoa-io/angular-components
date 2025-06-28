@@ -7,16 +7,15 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {AbstractFieldComponent} from '../abstract-field/abstract-field.component';
 
 @Component({
-  selector: 'ac-tabs',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgClass,
-    forwardRef(() => AcDynamicFieldDirective),
-    MatTabsModule
-  ],
-  templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss'],
+    selector: 'ac-tabs',
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        forwardRef(() => AcDynamicFieldDirective),
+        MatTabsModule
+    ],
+    templateUrl: './tabs.component.html',
+    styleUrls: ['./tabs.component.scss']
 })
 export class AcTabsComponent extends AbstractFieldComponent<AcTabsConfig> {
   get subGroup() {

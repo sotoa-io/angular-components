@@ -6,11 +6,10 @@ import {AcDynamicForm} from "../../../../../angular-components/src/lib/dynamic-f
 import {FormGroup, Validators} from "@angular/forms";
 
 @Component({
-  selector: 'app-test',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './test.component.html',
-  styleUrl: './test.component.scss'
+    selector: 'app-test',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './test.component.html',
+    styleUrl: './test.component.scss'
 })
 export class TestComponent {
   /*

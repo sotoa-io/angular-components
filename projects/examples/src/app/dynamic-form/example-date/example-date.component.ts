@@ -5,11 +5,10 @@ import {
 import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form';
 
 @Component({
-  selector: 'app-example-date',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-date.component.html',
-  styleUrl: './example-date.component.scss'
+    selector: 'app-example-date',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-date.component.html',
+    styleUrl: './example-date.component.scss'
 })
 export class ExampleDateComponent {
   config: AcDynamicForm = {

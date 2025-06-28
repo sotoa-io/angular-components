@@ -10,11 +10,10 @@ import {
 import {Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-example-input',
-  standalone: true,
-  imports: [AcDynamicFormComponent, MatIconModule],
-  templateUrl: './example-input.component.html',
-  styleUrl: './example-input.component.scss'
+    selector: 'app-example-input',
+    imports: [AcDynamicFormComponent, MatIconModule],
+    templateUrl: './example-input.component.html',
+    styleUrl: './example-input.component.scss'
 })
 export class ExampleInputComponent {
   config: AcDynamicForm = {

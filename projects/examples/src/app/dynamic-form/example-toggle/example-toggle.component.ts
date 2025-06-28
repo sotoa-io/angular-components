@@ -5,11 +5,10 @@ import {
 import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form';
 
 @Component({
-  selector: 'app-example-toggle',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-toggle.component.html',
-  styleUrl: './example-toggle.component.scss'
+    selector: 'app-example-toggle',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-toggle.component.html',
+    styleUrl: './example-toggle.component.scss'
 })
 export class ExampleToggleComponent {
 

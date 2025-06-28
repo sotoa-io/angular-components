@@ -13,20 +13,19 @@ import {
 import {AcDynamicFieldDirective} from "../dynamic-field.directive";
 
 @Component({
-  selector: 'ac-group',
-  standalone: true,
-  imports: [
-    forwardRef(() => AcDynamicFieldDirective),
-    NgClass,
-    MatError,
-    MatAccordion,
-    MatExpansionPanel,
-    MatExpansionPanelHeader,
-    MatExpansionPanelTitle,
-    NgTemplateOutlet
-  ],
-  templateUrl: './group.component.html',
-  styleUrls: ['./group.component.scss'],
+    selector: 'ac-group',
+    imports: [
+        forwardRef(() => AcDynamicFieldDirective),
+        NgClass,
+        MatError,
+        MatAccordion,
+        MatExpansionPanel,
+        MatExpansionPanelHeader,
+        MatExpansionPanelTitle,
+        NgTemplateOutlet
+    ],
+    templateUrl: './group.component.html',
+    styleUrls: ['./group.component.scss']
 })
 export class AcGroupComponent extends AbstractControlFieldComponent<AcGroupConfig> {
   get subGroup() {

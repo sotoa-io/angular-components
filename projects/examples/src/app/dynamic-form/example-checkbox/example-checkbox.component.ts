@@ -5,11 +5,10 @@ import {
 import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-form/models/dynamic-form';
 
 @Component({
-  selector: 'app-example-checkbox',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-checkbox.component.html',
-  styleUrl: './example-checkbox.component.scss'
+    selector: 'app-example-checkbox',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-checkbox.component.html',
+    styleUrl: './example-checkbox.component.scss'
 })
 export class ExampleCheckboxComponent {
   config: AcDynamicForm = {

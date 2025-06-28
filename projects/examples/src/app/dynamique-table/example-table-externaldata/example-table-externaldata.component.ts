@@ -17,12 +17,11 @@ interface Item {
 }
 
 @Component({
-  selector: 'app-example-table-externaldata',
-  standalone: true,
-  imports: [AcDynamicTableComponent],
-  templateUrl: './example-table-externaldata.component.html',
-  styleUrl: './example-table-externaldata.component.scss',
-  providers: [DatePipe]
+    selector: 'app-example-table-externaldata',
+    imports: [AcDynamicTableComponent],
+    templateUrl: './example-table-externaldata.component.html',
+    styleUrl: './example-table-externaldata.component.scss',
+    providers: [DatePipe]
 })
 export class ExampleTableExternaldataComponent {
 

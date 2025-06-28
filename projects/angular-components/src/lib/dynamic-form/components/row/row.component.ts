@@ -6,15 +6,14 @@ import {NgClass} from '@angular/common';
 import {AcDynamicFieldDirective} from "../dynamic-field.directive";
 
 @Component({
-  selector: 'ac-row',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgClass,
-    forwardRef(() => AcDynamicFieldDirective)
-  ],
-  templateUrl: './row.component.html',
-  styleUrls: ['./row.component.scss'],
+    selector: 'ac-row',
+    imports: [
+        ReactiveFormsModule,
+        NgClass,
+        forwardRef(() => AcDynamicFieldDirective)
+    ],
+    templateUrl: './row.component.html',
+    styleUrls: ['./row.component.scss']
 })
 export class AcRowComponent extends AbstractFieldComponent<AcRowConfig> {
 }

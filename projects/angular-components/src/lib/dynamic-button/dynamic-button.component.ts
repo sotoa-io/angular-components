@@ -16,12 +16,11 @@ import {MatIcon} from '@angular/material/icon';
 import {MatMenuItem} from '@angular/material/menu';
 
 @Component({
-  selector: 'ac-button',
-  standalone: true,
-  imports: [MatButtonModule, MatBadge, NgClass, MatIcon, MatMenuItem, NgTemplateOutlet],
-  templateUrl: './dynamic-button.component.html',
-  styleUrls: ['./dynamic-button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ac-button',
+    imports: [MatButtonModule, MatBadge, NgClass, MatIcon, MatMenuItem, NgTemplateOutlet],
+    templateUrl: './dynamic-button.component.html',
+    styleUrls: ['./dynamic-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AcDynamicButtonComponent {
 

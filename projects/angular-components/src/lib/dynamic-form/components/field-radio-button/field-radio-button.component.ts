@@ -10,11 +10,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInput} from "@angular/material/input";
 
 @Component({
-  selector: 'ac-field-radio-button',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatRadioModule, MatError, MatTooltipModule, MatIconModule, MatInput],
-  templateUrl: './field-radio-button.component.html',
-  styleUrls: ['./field-radio-button.component.scss'],
+    selector: 'ac-field-radio-button',
+    imports: [ReactiveFormsModule, NgClass, MatRadioModule, MatError, MatTooltipModule, MatIconModule, MatInput],
+    templateUrl: './field-radio-button.component.html',
+    styleUrls: ['./field-radio-button.component.scss']
 })
 export class AcFieldRadioButtonComponent extends AbstractControlFieldComponent<AcFieldRadioButtonConfig> {
 }

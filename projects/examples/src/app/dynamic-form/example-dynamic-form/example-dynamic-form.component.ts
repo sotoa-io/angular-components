@@ -10,11 +10,10 @@ import {
 } from "../../../../../angular-components/src/lib/dynamic-form/models/condition";
 
 @Component({
-  selector: 'app-example-dynamic-form',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-dynamic-form.component.html',
-  styleUrl: './example-dynamic-form.component.scss'
+    selector: 'app-example-dynamic-form',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-dynamic-form.component.html',
+    styleUrl: './example-dynamic-form.component.scss'
 })
 export class ExampleDynamicFormComponent {
   config: AcDynamicForm = {

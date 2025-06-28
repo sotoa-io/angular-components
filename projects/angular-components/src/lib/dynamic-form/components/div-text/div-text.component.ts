@@ -4,10 +4,9 @@ import { AbstractFieldComponent } from '../abstract-field/abstract-field.compone
 import { NgClass } from '@angular/common';
 
 @Component({
-  selector: 'ac-div-text',
-  standalone: true,
-  imports: [NgClass],
-  templateUrl: './div-text.component.html',
-  styleUrls: ['./div-text.component.scss'],
+    selector: 'ac-div-text',
+    imports: [NgClass],
+    templateUrl: './div-text.component.html',
+    styleUrls: ['./div-text.component.scss']
 })
 export class AcDivTextComponent extends AbstractFieldComponent<AcTextConfig> {}

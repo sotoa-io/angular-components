@@ -10,11 +10,10 @@ import {FormGroup, Validators} from '@angular/forms';
 import {of} from 'rxjs';
 
 @Component({
-  selector: 'app-example-dynamic-form-modal',
-  standalone: true,
-  imports: [],
-  templateUrl: './example-dynamic-form-modal.component.html',
-  styleUrl: './example-dynamic-form-modal.component.scss'
+    selector: 'app-example-dynamic-form-modal',
+    imports: [],
+    templateUrl: './example-dynamic-form-modal.component.html',
+    styleUrl: './example-dynamic-form-modal.component.scss'
 })
 export class ExampleDynamicFormModalComponent {
   private readonly dialog: MatDialog = inject(MatDialog);

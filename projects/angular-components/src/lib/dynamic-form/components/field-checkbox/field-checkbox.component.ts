@@ -7,10 +7,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatError } from '@angular/material/form-field';
 
 @Component({
-  selector: 'ac-field-checkbox',
-  standalone: true,
-  imports: [ReactiveFormsModule, NgClass, MatCheckboxModule, MatError],
-  templateUrl: './field-checkbox.component.html',
-  styleUrls: ['./field-checkbox.component.scss'],
+    selector: 'ac-field-checkbox',
+    imports: [ReactiveFormsModule, NgClass, MatCheckboxModule, MatError],
+    templateUrl: './field-checkbox.component.html',
+    styleUrls: ['./field-checkbox.component.scss']
 })
 export class AcFieldCheckboxComponent extends AbstractControlFieldComponent<AcFieldCheckboxConfig> {}

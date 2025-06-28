@@ -6,11 +6,10 @@ import {AcDynamicForm} from '../../../../../angular-components/src/lib/dynamic-f
 import {of} from 'rxjs';
 
 @Component({
-  selector: 'app-example-autocomplete',
-  standalone: true,
-  imports: [AcDynamicFormComponent],
-  templateUrl: './example-autocomplete.component.html',
-  styleUrl: './example-autocomplete.component.scss'
+    selector: 'app-example-autocomplete',
+    imports: [AcDynamicFormComponent],
+    templateUrl: './example-autocomplete.component.html',
+    styleUrl: './example-autocomplete.component.scss'
 })
 export class ExampleAutocompleteComponent {
   config: AcDynamicForm = {

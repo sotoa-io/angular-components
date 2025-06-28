@@ -11,13 +11,12 @@ import {
 } from "../../../../../angular-components/src/lib/dynamic-form/dynamic-form/dynamic-form.component";
 
 @Component({
-  selector: 'app-example-password',
-  standalone: true,
-  imports: [
-    AcDynamicFormComponent
-  ],
-  templateUrl: './example-password.component.html',
-  styleUrl: './example-password.component.scss'
+    selector: 'app-example-password',
+    imports: [
+        AcDynamicFormComponent
+    ],
+    templateUrl: './example-password.component.html',
+    styleUrl: './example-password.component.scss'
 })
 export class ExamplePasswordComponent {
   config: AcDynamicForm = {
